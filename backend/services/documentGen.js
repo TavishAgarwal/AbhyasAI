@@ -120,12 +120,24 @@ async function generatePdf(html, version) {
 </body>
 </html>`;
 
-  const browser = await puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(),
-    headless: chromium.headless
-  });
+  let browser;
+  const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
+  
+  if (isProd) {
+    const puppeteerCore = require('puppeteer-core');
+    browser = await puppeteerCore.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless
+    });
+  } else {
+    const puppeteerFull = require('puppeteer');
+    browser = await puppeteerFull.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+  }
 
   try {
     const page = await browser.newPage();
@@ -174,52 +186,54 @@ const editionLabels = {
  * @returns {Promise<Buffer>} - DOCX buffer
  */
 async function generateDocx(plainTextContent, version, chapterMeta) {
+  const FORMAT_STYLES = {
+    standard: { fontSize: 24, lineSpacing: 276, font: 'Calibri' },
+    dyslexia: { fontSize: 32, lineSpacing: 400, font: 'Verdana' },     
+    adhd:     { fontSize: 26, lineSpacing: 300, font: 'Segoe UI' },    
+  };
+  
+  const style = FORMAT_STYLES[version] || FORMAT_STYLES['standard'];
   const editionLabel = editionLabels[version] || 'Worksheet';
 
+  // Split content by paragraphs
+  const contentLines = plainTextContent.split('\n').filter(line => line.trim().length > 0);
+
   const paragraphs = [
-    // Title
     new Paragraph({
-      children: [
-        new TextRun({
-          text: `AbhyasAI — ${editionLabel}`,
-          bold: true,
-          size: 32,
-          color: '1B5E8B'
-        })
-      ],
-      alignment: AlignmentType.LEFT,
+      text: `${chapterMeta.subject} — Class ${chapterMeta.class}`,
+      heading: HeadingLevel.TITLE,
+      alignment: AlignmentType.CENTER,
       spacing: { after: 100 }
     }),
-    // Subtitle
     new Paragraph({
-      children: [
-        new TextRun({
-          text: `${chapterMeta.subject || 'Subject'} · Class ${chapterMeta.class || 'N'} · Chapter ${chapterMeta.chapterNum || 'N'}`,
-          italics: true,
-          size: 22,
-          color: '718096'
-        })
-      ],
-      spacing: { after: 200 }
+      text: `Chapter ${chapterMeta.chapterNum}: ${chapterMeta.title}`,
+      heading: HeadingLevel.HEADING_2,
+      alignment: AlignmentType.CENTER,
+      spacing: { after: 100 }
     }),
-    // Spacer
-    new Paragraph({ text: '', spacing: { after: 200 } })
+    new Paragraph({
+      text: editionLabel,
+      heading: HeadingLevel.HEADING_3,
+      alignment: AlignmentType.CENTER,
+      spacing: { after: 400 }
+    }),
   ];
 
-  // Body: split on newlines, one paragraph per line
-  const lines = plainTextContent.split('\n').filter(line => line.trim());
-  for (const line of lines) {
-    paragraphs.push(
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: line.trim(),
-            size: 24
-          })
-        ],
-        spacing: { after: 120 }
-      })
-    );
+  // Convert each line into a paragraph with style
+  for (const line of contentLines) {
+    if (line.match(/^[A-Z\s]+$/) && line.length < 50) {
+      // Looks like a heading
+      paragraphs.push(new Paragraph({
+        text: line,
+        heading: HeadingLevel.HEADING_2,
+        spacing: { before: 300, after: 100 }
+      }));
+    } else {
+      paragraphs.push(new Paragraph({
+        children: [new TextRun({ text: line, font: style.font, size: style.fontSize })],
+        spacing: { after: 200, line: style.lineSpacing }
+      }));
+    }
   }
 
   const doc = new Document({

@@ -26,6 +26,36 @@ function sanitiseInput(text) {
 // System Prompts for Rubrics
 // ============================================================
 
+const ACADEMIC_SYSTEM_PROMPT = `You are an expert academic tutor evaluating a student's answer.
+Given a question, the expected answer points, and the student's answer, evaluate their response.
+
+Rubric for Academic Questions:
+- Correctness (35%): Is the information factually accurate?
+- Completeness (25%): Did they cover the expected answer points?
+- Understanding (25%): Do they demonstrate deep understanding vs rote memorization?
+- Clarity (15%): Is the explanation clear, structured, and easy to follow?
+
+Rules:
+- Provide a score between 0.0 and 1.0 based on the rubric above.
+- Identify 1-3 specific strengths in their answer.
+- Identify 1-3 specific gaps or areas for improvement.
+- Suggest 1-2 actionable study resources or tips based on their gaps.
+- Return ONLY valid JSON matching the schema below. No markdown fences.
+
+Schema:
+{
+  "score": 0.85,
+  "strengths": ["string"],
+  "gaps": ["string"],
+  "resources": ["string"],
+  "rubric_details": {
+    "correctness": 0.9,
+    "completeness": 0.8,
+    "understanding": 0.8,
+    "clarity": 0.9
+  }
+}`;
+
 const TECHNICAL_SYSTEM_PROMPT = `You are an expert technical interviewer evaluating a candidate's answer.
 Given a question, the expected answer points, and the candidate's answer, evaluate their response.
 
@@ -97,10 +127,17 @@ Schema:
  * @param {string} params.questionType - 'technical' or 'behavioral'
  * @param {Array<string>} params.expectedPoints - Expected key points
  * @param {string} params.answerText - The user's answer
+ * @param {string} params.sessionType - 'topic' or 'job_role'
  * @returns {Promise<{ score: number, strengths: string[], gaps: string[], resources: string[], rubric_details: Object }>}
  */
-async function evaluate({ questionText, questionType, expectedPoints, answerText }) {
-  const systemPrompt = questionType === 'behavioral' ? BEHAVIORAL_SYSTEM_PROMPT : TECHNICAL_SYSTEM_PROMPT;
+async function evaluate({ questionText, questionType, expectedPoints, answerText, sessionType }) {
+  let systemPrompt;
+  if (sessionType === 'topic') {
+    systemPrompt = ACADEMIC_SYSTEM_PROMPT;
+  } else {
+    systemPrompt = questionType === 'behavioral' ? BEHAVIORAL_SYSTEM_PROMPT : TECHNICAL_SYSTEM_PROMPT;
+  }
+  
   const sanitisedAnswer = sanitiseInput(answerText);
 
   let userMessageContent = `Question: ${questionText}\n`;
@@ -122,7 +159,11 @@ async function evaluate({ questionText, questionType, expectedPoints, answerText
       messages,
     });
 
-    let content = response.choices[0].message.content;
+    const choice = response.choices?.[0];
+    if (!choice?.message?.content) {
+      throw new Error('LLM returned empty response');
+    }
+    let content = choice.message.content;
     content = content.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
     return JSON.parse(content);
   };

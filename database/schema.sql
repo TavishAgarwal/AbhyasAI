@@ -60,27 +60,7 @@ CREATE INDEX IF NOT EXISTS idx_generation_jobs_expires
 CREATE INDEX IF NOT EXISTS idx_generation_jobs_created
   ON generation_jobs(created_at);
 
--- ============================================================
--- Table 3: whatsapp_sessions
--- WhatsApp conversation state per phone number.
--- ============================================================
-CREATE TABLE IF NOT EXISTS whatsapp_sessions (
-  phone_number VARCHAR(20) PRIMARY KEY,
-  conversation_state VARCHAR(50) DEFAULT 'greeting',
-  class_num INTEGER,
-  subject VARCHAR(50),
-  chapter_num INTEGER,
-  version_type VARCHAR(20),
-  uploaded_text TEXT,
-  last_job_id UUID REFERENCES generation_jobs(id) ON DELETE SET NULL,
-  last_message_at TIMESTAMP DEFAULT NOW(),
-  created_at TIMESTAMP DEFAULT NOW()
-);
 
-CREATE INDEX IF NOT EXISTS idx_whatsapp_sessions_state
-  ON whatsapp_sessions(conversation_state);
-CREATE INDEX IF NOT EXISTS idx_whatsapp_sessions_last_message
-  ON whatsapp_sessions(last_message_at);
 
 -- ============================================================
 -- Table 4: topics_or_roles
@@ -129,7 +109,7 @@ CREATE TABLE IF NOT EXISTS questions (
   question_text TEXT NOT NULL,
   question_type VARCHAR(20) NOT NULL CHECK (question_type IN ('technical', 'behavioral')),
   difficulty_level VARCHAR(10) DEFAULT 'medium' CHECK (difficulty_level IN ('easy', 'medium', 'hard')),
-  difficulty_rating FLOAT DEFAULT 1500.0,
+  difficulty_rating FLOAT DEFAULT 0.0,
   expected_answer_points JSONB DEFAULT '[]'::jsonb,
   metadata JSONB DEFAULT '{}'::jsonb,
   created_at TIMESTAMP DEFAULT NOW()
@@ -187,7 +167,7 @@ CREATE TABLE IF NOT EXISTS skill_ratings (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   session_id UUID NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
   skill_id UUID NOT NULL REFERENCES skills(id),
-  rating FLOAT DEFAULT 1500.0,
+  rating FLOAT DEFAULT 0.0,
   updated_at TIMESTAMP DEFAULT NOW(),
   UNIQUE(session_id, skill_id)
 );
@@ -231,6 +211,24 @@ CREATE TABLE IF NOT EXISTS reports (
 
 CREATE INDEX IF NOT EXISTS idx_reports_session
   ON reports(session_id);
+
+-- ============================================================
+-- Table 11: whatsapp_sessions
+-- WhatsApp conversation state per phone number.
+-- ============================================================
+CREATE TABLE IF NOT EXISTS whatsapp_sessions (
+  phone_number VARCHAR(20) PRIMARY KEY,
+  conversation_state VARCHAR(50) DEFAULT 'greeting',
+  current_session_id UUID REFERENCES sessions(id) ON DELETE SET NULL,
+  current_question_id UUID REFERENCES questions(id) ON DELETE SET NULL,
+  last_message_at TIMESTAMP DEFAULT NOW(),
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_whatsapp_sessions_state
+  ON whatsapp_sessions(conversation_state);
+CREATE INDEX IF NOT EXISTS idx_whatsapp_sessions_last_message
+  ON whatsapp_sessions(last_message_at);
 
 -- ============================================================
 -- Storage: Create bucket for generated files

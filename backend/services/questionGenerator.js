@@ -12,13 +12,42 @@ const openai = new OpenAI({
 });
 
 // Elo constants
-const INITIAL_DIFFICULTY = 1500.0; // β_i starting rating
+const INITIAL_DIFFICULTY = 0.0; // β_i starting rating
 
-// ============================================================
-// System prompt for question generation
-// ============================================================
+const TOPIC_SYSTEM_PROMPT = `You are an expert question designer for an adaptive academic coaching system.
 
-const SYSTEM_PROMPT = `You are an expert question designer for an adaptive study and interview coaching system.
+Given a list of skills (each with an id, name, and category), generate practice questions that test one or more of those skills.
+
+For Academic Topics, generate questions that test conceptual understanding, application, or problem-solving. Mix question types:
+- Explain/define questions ("Explain the difference between...", "What is the purpose of...")
+- Application questions ("Solve...", "Calculate...", "Given this scenario, predict...")
+- Analytical/Critical thinking questions ("Compare and contrast...", "Why does...")
+
+Rules:
+- Generate exactly the number of questions requested.
+- Each question MUST map to 1–3 skills from the provided list. Use skill IDs for the mapping.
+- Assign a weight (0.0–1.0) to each skill mapping: 1.0 = primary skill tested, 0.5 = secondary, 0.3 = tangentially tested.
+- Assign a difficulty_level to each question: "easy", "medium", or "hard".
+- Include 3–5 key answer points that a good answer should cover.
+- Set question_type to "technical" for all academic questions. Do NOT generate STAR behavioral questions.
+
+Return ONLY raw JSON — no markdown fences, no preamble, no explanation.
+Schema:
+{
+  "questions": [
+    {
+      "question_text": "string",
+      "question_type": "technical",
+      "difficulty_level": "easy | medium | hard",
+      "answer_points": ["string"],
+      "skill_mappings": [
+        { "skill_id": "uuid", "weight": 0.0-1.0 }
+      ]
+    }
+  ]
+}`;
+
+const JOB_ROLE_SYSTEM_PROMPT = `You are an expert question designer for an adaptive interview coaching system.
 
 Given a list of skills (each with an id, name, and category), generate practice questions that test one or more of those skills.
 
@@ -65,31 +94,51 @@ Schema:
  * @param {Array<{ id: string, name: string, category: string }>} params.skills
  * @param {number} [params.count=10] - Number of questions to generate
  * @param {string} [params.topicContext=''] - Original topic/role for context
+ * @param {string} params.type - 'topic' or 'role'
  * @returns {Promise<{ questions: Array }>}
  */
-async function generate({ skills, count = 10, topicContext = '' }) {
-  // Build the user message with skill list
-  const skillListText = skills
-    .map((s) => `- ID: ${s.id} | Name: ${s.name} | Category: ${s.category}`)
-    .join('\n');
+async function generate({ skills, count = 10, topicContext, type, previousScore, previousQuestions }) {
+  if (!skills || !Array.isArray(skills) || skills.length === 0) {
+    throw new Error('Skills array is required to generate questions.');
+  }
 
-  const userMessage = [
-    topicContext ? `Topic/Role context: "${topicContext}"` : '',
-    `Generate exactly ${count} practice questions for these skills:`,
-    '',
-    skillListText,
-    '',
-    `Ensure a good mix: roughly 60% technical, 40% behavioral (or adjust based on the skill distribution).`,
-    `Spread difficulty: ~30% easy, ~50% medium, ~20% hard.`,
-    `Each question should map to 1–3 skills from the list above.`,
-  ]
-    .filter(Boolean)
-    .join('\n');
+  const simplifiedSkills = skills.map(s => ({
+    id: s.id,
+    name: s.name,
+    category: s.category
+  }));
 
-  const messages = [
-    { role: 'system', content: SYSTEM_PROMPT },
-    { role: 'user', content: userMessage },
-  ];
+  const systemPrompt = type === 'topic' ? TOPIC_SYSTEM_PROMPT : JOB_ROLE_SYSTEM_PROMPT;
+
+  let userPrompt = `Context: "${topicContext || 'General'}"
+Number of questions to generate: ${count}
+Skills available to test:
+${JSON.stringify(simplifiedSkills, null, 2)}
+
+Please generate ${count} practice questions mapping to these skills. Ensure the IDs exactly match.`;
+
+  // Adaptive Retry Logic
+  if (previousScore !== undefined && previousQuestions && previousQuestions.length > 0) {
+    let difficultyInstruction = 'Generate 30% easy, 50% medium, 20% hard questions (default mix).';
+    if (previousScore >= 0.7) {
+      difficultyInstruction = 'Generate 20% easy, 40% medium, 40% hard questions. Focus on edge cases, synthesis, and deeper conceptual challenges.';
+    } else if (previousScore <= 0.3) {
+      difficultyInstruction = 'Generate 50% easy, 40% medium, 10% hard questions. Focus on fundamentals and core concepts.';
+    }
+
+    userPrompt += `\n\nDIFFICULTY ADJUSTMENT:
+The learner scored ${previousScore.toFixed(2)} on their last attempt.
+${difficultyInstruction}
+
+AVOID THESE PREVIOUSLY ASKED QUESTIONS — do NOT repeat or rephrase them:
+${previousQuestions.map((q, i) => `${i + 1}. "${q}"`).join('\n')}
+`;
+  }
+
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt },
+    ];
 
   const callLLM = async () => {
     const response = await openai.chat.completions.create({
@@ -99,7 +148,11 @@ async function generate({ skills, count = 10, topicContext = '' }) {
       messages,
     });
 
-    let content = response.choices[0].message.content;
+    const choice = response.choices?.[0];
+    if (!choice?.message?.content) {
+      throw new Error('LLM returned empty response');
+    }
+    let content = choice.message.content;
     // Strip markdown code fences if present
     content = content.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
     return JSON.parse(content);
@@ -128,12 +181,12 @@ async function generate({ skills, count = 10, topicContext = '' }) {
 function difficultyToRating(level) {
   switch (level) {
     case 'easy':
-      return INITIAL_DIFFICULTY - 200; // 1300
+      return -1.0;
     case 'hard':
-      return INITIAL_DIFFICULTY + 200; // 1700
+      return 1.0;
     case 'medium':
     default:
-      return INITIAL_DIFFICULTY; // 1500
+      return 0.0;
   }
 }
 

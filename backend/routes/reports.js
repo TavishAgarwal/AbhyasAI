@@ -9,6 +9,7 @@ const { supabase } = require('../services/supabaseClient');
 const { generateReport } = require('../services/reportGenerator');
 const { renderReport } = require('../services/reportRenderer');
 const { generatePdf } = require('../services/documentGen');
+const { generateReportDocx } = require('../services/docxGenerator');
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -28,7 +29,7 @@ router.post('/generate', async (req, res) => {
     // 1. Fetch Session to ensure it exists and is completed (optional, but good practice)
     const { data: session, error: sErr } = await supabase
       .from('sessions')
-      .select('*, topics_or_roles(raw_input)')
+      .select('*, topics_or_roles(raw_input, type)')
       .eq('id', sessionId)
       .single();
 
@@ -85,7 +86,7 @@ router.post('/generate', async (req, res) => {
     // We need the initial rating for each skill to compute deltas. 
     // Since our initial rating is fixed at 1500.0, we can just use that.
     // If it was dynamic, we would need to store initial ratings on session creation.
-    const INITIAL_RATING = 1500.0;
+    const INITIAL_RATING = 0.0;
     
     const skillIds = skillRatings.map(sr => sr.skill_id);
     const { data: skills } = await supabase
@@ -108,6 +109,7 @@ router.post('/generate', async (req, res) => {
     });
     
     const topicContext = session.topics_or_roles?.raw_input || 'Unknown Topic';
+    const sessionType = session.topics_or_roles?.type || 'topic';
     
     // 4. Generate the report via LLM
     let reportData;
@@ -115,7 +117,8 @@ router.post('/generate', async (req, res) => {
       reportData = await generateReport({
         topicContext,
         answers: enrichedAnswers,
-        skillChanges
+        skillChanges,
+        sessionType
       });
     } catch (llmErr) {
       console.error(JSON.stringify({
@@ -288,6 +291,45 @@ router.get('/session/:sessionId/pdf', async (req, res) => {
   } catch (err) {
     console.error(`Error generating report PDF:`, err);
     return res.status(500).send('Something went wrong generating the PDF.');
+  }
+});
+
+// ============================================================
+// GET /api/reports/session/:sessionId/docx
+// ============================================================
+router.get('/session/:sessionId/docx', async (req, res) => {
+  try {
+    const { sessionId } = req.params;
+    const format = req.query.format || 'standard';
+    
+    if (!['standard', 'dyslexia', 'adhd'].includes(format)) {
+      return res.status(400).json({ error: 'Invalid format specified.' });
+    }
+
+    if (!UUID_REGEX.test(sessionId)) {
+      return res.status(400).json({ error: 'Invalid sessionId format.' });
+    }
+
+    const { data: report, error } = await supabase
+      .from('reports')
+      .select('report_json, sessions(topics_or_roles(raw_input))')
+      .eq('session_id', sessionId)
+      .single();
+      
+    if (error || !report) {
+      return res.status(404).send('Report not found for this session.');
+    }
+    
+    const topicContext = report.sessions?.topics_or_roles?.raw_input || 'Practice Session';
+    const docxBuffer = await generateReportDocx(report.report_json, topicContext, format);
+    
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    res.setHeader('Content-Disposition', `attachment; filename="AbhyasAI-Report-${format}.docx"`);
+    return res.status(200).send(docxBuffer);
+    
+  } catch (err) {
+    console.error(`Error generating report DOCX:`, err);
+    return res.status(500).send('Something went wrong generating the DOCX.');
   }
 });
 

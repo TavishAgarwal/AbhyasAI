@@ -2,6 +2,11 @@
 // AbhyasAI API client — typed interface to the backend
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_KEY = import.meta.env.VITE_API_SECRET_KEY || '';
+
+function apiHeaders(extra?: Record<string, string>): Record<string, string> {
+  return { 'Content-Type': 'application/json', 'x-api-key': API_KEY, ...extra };
+}
 
 // ============================================================
 // Types
@@ -44,7 +49,6 @@ export interface GenerateResponse {
   versions: Record<string, VersionResult>;
   qualityReport: QualityReport;
   chapterMeta: { class: number; subject: string; chapterNum: number; title: string };
-  chapterMeta: { class: number; subject: string; chapterNum: number; title: string };
   fromCache: boolean;
 }
 
@@ -63,8 +67,8 @@ export interface Session {
 
 export interface Question {
   id: string;
-  question_text: string;
-  question_type: string;
+  questionText: string;
+  questionType: string;
 }
 
 export interface AnswerResult {
@@ -104,14 +108,14 @@ export async function getChapters(params?: {
   if (params?.language) searchParams.set('language', params.language);
 
   const url = `${API_URL}/api/chapters?${searchParams.toString()}`;
-  const res = await fetch(url);
+  const res = await fetch(url, { headers: apiHeaders() });
   if (!res.ok) throw new Error('Failed to fetch chapters');
   const data = await res.json();
   return data.chapters || [];
 }
 
 export async function getSubjects(classNum: number): Promise<string[]> {
-  const res = await fetch(`${API_URL}/api/chapters/subjects?class=${classNum}`);
+  const res = await fetch(`${API_URL}/api/chapters/subjects?class=${classNum}`, { headers: apiHeaders() });
   if (!res.ok) throw new Error('Failed to fetch subjects');
   const data = await res.json();
   return data.subjects || [];
@@ -141,6 +145,7 @@ export async function generateWorksheet(params: {
 
   const res = await fetch(`${API_URL}/api/generate`, {
     method: 'POST',
+    headers: { 'x-api-key': API_KEY },
     body: formData
   });
 
@@ -171,7 +176,7 @@ export async function checkHealth(): Promise<boolean> {
 export async function extractSkills(rawInput: string, type: 'topic' | 'job_role') {
   const res = await fetch(`${API_URL}/api/skills/extract`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: apiHeaders(),
     body: JSON.stringify({ rawInput, type }),
   });
   if (!res.ok) throw new Error('Failed to extract skills');
@@ -179,36 +184,54 @@ export async function extractSkills(rawInput: string, type: 'topic' | 'job_role'
 }
 
 export async function getSkills(topicOrRoleId: string) {
-  const res = await fetch(`${API_URL}/api/skills/${topicOrRoleId}`);
+  const res = await fetch(`${API_URL}/api/skills/${topicOrRoleId}`, { headers: apiHeaders() });
   if (!res.ok) throw new Error('Failed to fetch skills');
   return res.json(); // { skills }
 }
 
 // ============================================================
+// Questions API
+// ============================================================
+export async function generateQuestions(
+  topicOrRoleId: string, 
+  count: number = 5,
+  previousScore?: number,
+  previousQuestions?: string[]
+) {
+  const res = await fetch(`${API_URL}/api/questions/generate`, {
+    method: 'POST',
+    headers: apiHeaders(),
+    body: JSON.stringify({ topicOrRoleId, count, previousScore, previousQuestions }),
+  });
+  if (!res.ok) throw new Error('Failed to generate questions');
+  return res.json();
+}
+
+// ============================================================
 // Sessions API
 // ============================================================
-export async function startSession(topicOrRoleId: string, totalQuestions: number = 5) {
+export async function startSession(topicOrRoleId: string, totalQuestions: number = 5, questionIds?: string[]) {
   const res = await fetch(`${API_URL}/api/sessions/start`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ topicOrRoleId, totalQuestions }),
+    headers: apiHeaders(),
+    body: JSON.stringify({ topicOrRoleId, totalQuestions, questionIds }),
   });
   if (!res.ok) throw new Error('Failed to start session');
   return res.json(); // { session, firstQuestion, initialRatings }
 }
 
-export async function submitAnswer(sessionId: string, answerText: string): Promise<AnswerResponse> {
+export async function submitAnswer(sessionId: string, questionId: string, answerText: string): Promise<AnswerResponse> {
   const res = await fetch(`${API_URL}/api/sessions/${sessionId}/answer`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ answerText }),
+    headers: apiHeaders(),
+    body: JSON.stringify({ questionId, answerText }),
   });
   if (!res.ok) throw new Error('Failed to submit answer');
   return res.json();
 }
 
 export async function getSession(sessionId: string) {
-  const res = await fetch(`${API_URL}/api/sessions/${sessionId}`);
+  const res = await fetch(`${API_URL}/api/sessions/${sessionId}`, { headers: apiHeaders() });
   if (!res.ok) throw new Error('Failed to fetch session');
   return res.json();
 }
@@ -219,7 +242,7 @@ export async function getSession(sessionId: string) {
 export async function generateReport(sessionId: string) {
   const res = await fetch(`${API_URL}/api/reports/generate`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: apiHeaders(),
     body: JSON.stringify({ sessionId }),
   });
   if (!res.ok) throw new Error('Failed to generate report');
@@ -227,11 +250,81 @@ export async function generateReport(sessionId: string) {
 }
 
 export async function getReportHTML(sessionId: string, format: 'standard' | 'dyslexia' | 'adhd'): Promise<string> {
-  const res = await fetch(`${API_URL}/api/reports/session/${sessionId}/render?format=${format}`);
+  const res = await fetch(`${API_URL}/api/reports/session/${sessionId}/render?format=${format}`, { headers: apiHeaders() });
   if (!res.ok) throw new Error('Failed to get report HTML');
   return res.text();
 }
 
 export function getReportPdfUrl(sessionId: string, format: string): string {
   return `${API_URL}/api/reports/session/${sessionId}/pdf?format=${format}`;
+}
+
+export function getReportDocxUrl(sessionId: string, format: string): string {
+  return `${API_URL}/api/reports/session/${sessionId}/docx?format=${format}`;
+}
+
+// ============================================================
+// STUBS FOR NEW ENDPOINTS (Dashboard & Settings)
+// ============================================================
+export async function getSessionList() {
+  const res = await fetch(`${API_URL}/api/dashboard/sessions`, { headers: apiHeaders() });
+  if (!res.ok) throw new Error('Failed to fetch sessions');
+  return res.json();
+}
+
+export async function getDashboardStats() {
+  const res = await fetch(`${API_URL}/api/dashboard/stats`, { headers: apiHeaders() });
+  if (!res.ok) throw new Error('Failed to fetch stats');
+  return res.json();
+}
+
+// ============================================================
+// Study Material API
+// ============================================================
+export async function generateStudyMaterial(sessionId: string, format: string = 'standard'): Promise<string> {
+  const res = await fetch(`${API_URL}/api/study-material/generate`, {
+    method: 'POST',
+    headers: apiHeaders(),
+    body: JSON.stringify({ sessionId, format }),
+  });
+  if (!res.ok) throw new Error('Failed to generate study material');
+  return res.text();
+}
+
+export async function downloadStudyMaterial(sessionId: string, format: string, topicName: string, type: 'pdf' | 'docx') {
+  const html = await generateStudyMaterial(sessionId, format);
+  
+  const res = await fetch(`${API_URL}/api/study-material/download/${type}`, {
+    method: 'POST',
+    headers: {
+      ...apiHeaders(),
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ html, format, topic: topicName })
+  });
+  
+  if (!res.ok) throw new Error(`Failed to download ${type.toUpperCase()}`);
+  return res.blob();
+}
+
+// ============================================================
+// Audio API
+// ============================================================
+export async function transcribeAudio(audioBlob: Blob): Promise<string> {
+  const formData = new FormData();
+  formData.append('audio', audioBlob, 'recording.webm');
+  
+  const headers = apiHeaders();
+  // Remove Content-Type so fetch can automatically set multipart boundary
+  delete (headers as any)['Content-Type'];
+
+  const res = await fetch(`${API_URL}/api/transcribe`, {
+    method: 'POST',
+    headers,
+    body: formData,
+  });
+  
+  if (!res.ok) throw new Error('Transcription failed');
+  const data = await res.json();
+  return data.text;
 }

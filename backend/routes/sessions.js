@@ -18,21 +18,39 @@ const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12
 // ============================================================
 router.post('/start', async (req, res) => {
   try {
-    const { topicOrRoleId, questionCount } = req.body;
+    const { topicOrRoleId, questionCount, questionIds } = req.body;
 
     if (!topicOrRoleId || !UUID_REGEX.test(topicOrRoleId)) {
       return res.status(400).json({ error: 'Valid topicOrRoleId is required.' });
     }
 
-    const totalQuestions = Math.min(Math.max(parseInt(questionCount) || 10, 1), 20);
+    let questions;
+    let totalQuestionsToUse;
 
-    // 1. Fetch questions for this topic
-    const { data: questions, error: qError } = await supabase
-      .from('questions')
-      .select('id, question_text, question_type, difficulty_level, difficulty_rating')
-      .eq('topic_or_role_id', topicOrRoleId);
+    if (questionIds && Array.isArray(questionIds)) {
+      // Use pre-generated question IDs
+      const { data: fetchedQuestions, error: qError } = await supabase
+        .from('questions')
+        .select('id, question_text, question_type, difficulty_level, difficulty_rating')
+        .in('id', questionIds)
+        .eq('topic_or_role_id', topicOrRoleId);
 
-    if (qError || !questions || questions.length === 0) {
+      if (qError) throw new Error(`Failed to fetch questions: ${qError.message}`);
+      questions = fetchedQuestions;
+      totalQuestionsToUse = questions.length;
+    } else {
+      // Fall back to original behavior: fetch questions for the topic
+      const { data: fetchedQuestions, error: qError } = await supabase
+        .from('questions')
+        .select('id, question_text, question_type, difficulty_level, difficulty_rating')
+        .eq('topic_or_role_id', topicOrRoleId);
+
+      if (qError) throw new Error(`Failed to fetch questions: ${qError.message}`);
+      questions = fetchedQuestions;
+      totalQuestionsToUse = Math.min(Math.max(parseInt(questionCount) || 10, 1), 20);
+    }
+
+    if (!questions || questions.length === 0) {
       return res.status(404).json({ error: 'No questions found for this topic.' });
     }
 
@@ -41,7 +59,7 @@ router.post('/start', async (req, res) => {
       .from('sessions')
       .insert({
         topic_or_role_id: topicOrRoleId,
-        total_questions: Math.min(totalQuestions, questions.length),
+        total_questions: Math.min(totalQuestionsToUse, questions.length),
       })
       .select()
       .single();
@@ -65,7 +83,7 @@ router.post('/start', async (req, res) => {
       const ratingRows = skills.map((s) => ({
         session_id: sessionRow.id,
         skill_id: s.id,
-        rating: 1500.0,
+        rating: 0.0,
       }));
 
       const { data: insertedRatings, error: rError } = await supabase
@@ -140,7 +158,7 @@ router.post('/:id/answer', async (req, res) => {
     // 1. Fetch Session and Question
     const { data: session, error: sessionErr } = await supabase
       .from('sessions')
-      .select('*')
+      .select('*, topics_or_roles(type)')
       .eq('id', sessionId)
       .single();
 
@@ -176,6 +194,7 @@ router.post('/:id/answer', async (req, res) => {
       questionType: question.question_type,
       expectedPoints: question.expected_answer_points,
       answerText: answerText,
+      sessionType: session.topics_or_roles?.type,
     });
 
     // 5. Compute Elo Updates
@@ -195,7 +214,7 @@ router.post('/:id/answer', async (req, res) => {
     });
 
     // 6. Persist Updates (Answer, Ratings, Question)
-    await supabase.from('answers').insert({
+    const { error: ansError } = await supabase.from('answers').insert({
       session_id: sessionId,
       question_id: questionId,
       answer_text: answerText,
@@ -204,21 +223,24 @@ router.post('/:id/answer', async (req, res) => {
       elo_updates: eloUpdates,
       question_index: session.current_question_index,
     });
+    if (ansError) throw new Error(`Failed to save answer: ${ansError.message}`);
 
     // Update Skill Ratings
     for (const change of eloUpdates.skillChanges) {
-      await supabase
+      const { error: srErr } = await supabase
         .from('skill_ratings')
         .update({ rating: change.newRating, updated_at: new Date().toISOString() })
         .eq('session_id', sessionId)
         .eq('skill_id', change.skillId);
+      if (srErr) console.error(`Skill rating update failed for ${change.skillId}: ${srErr.message}`);
     }
 
     // Update Question Difficulty
-    await supabase
+    const { error: qErr } = await supabase
       .from('questions')
       .update({ difficulty_rating: eloUpdates.questionDifficultyChange.new })
       .eq('id', questionId);
+    if (qErr) console.error(`Question difficulty update failed: ${qErr.message}`);
 
     // 7. Increment Session progress and pick next question
     const nextIndex = session.current_question_index + 1;
@@ -227,11 +249,12 @@ router.post('/:id/answer', async (req, res) => {
 
     if (nextIndex >= session.total_questions) {
       newStatus = 'completed';
-      await supabase.from('sessions').update({ 
+      const { error: sUpdateErr } = await supabase.from('sessions').update({ 
         current_question_index: nextIndex, 
         status: newStatus,
         completed_at: new Date().toISOString()
       }).eq('id', sessionId);
+      if (sUpdateErr) throw new Error(`Failed to update session status: ${sUpdateErr.message}`);
     } else {
       // Find answered questions
       const { data: answeredRows } = await supabase
@@ -250,13 +273,15 @@ router.post('/:id/answer', async (req, res) => {
 
       if (availableQuestions.length === 0) {
         newStatus = 'completed';
-        await supabase.from('sessions').update({ 
+        const { error: sUpdateErr } = await supabase.from('sessions').update({ 
           current_question_index: nextIndex, 
           status: newStatus,
           completed_at: new Date().toISOString()
         }).eq('id', sessionId);
+        if (sUpdateErr) throw new Error(`Failed to update session status: ${sUpdateErr.message}`);
       } else {
-        await supabase.from('sessions').update({ current_question_index: nextIndex }).eq('id', sessionId);
+        const { error: idxUpdateErr } = await supabase.from('sessions').update({ current_question_index: nextIndex }).eq('id', sessionId);
+        if (idxUpdateErr) throw new Error(`Failed to update session index: ${idxUpdateErr.message}`);
 
         const availableQIds = availableQuestions.map(q => q.id);
         const { data: allMappings } = await supabase
@@ -306,6 +331,7 @@ router.post('/:id/answer', async (req, res) => {
         difficultyLevel: nextQuestion.difficulty_level,
         questionIndex: nextIndex,
       } : null,
+      sessionComplete: newStatus === 'completed',
       sessionProgress: {
         answered: nextIndex,
         total: session.total_questions,
@@ -329,7 +355,7 @@ router.get('/:id', async (req, res) => {
 
     const { data: session, error: sErr } = await supabase
       .from('sessions')
-      .select('*')
+      .select('*, topics_or_roles(type, raw_input)')
       .eq('id', sessionId)
       .single();
 
@@ -371,6 +397,8 @@ router.get('/:id', async (req, res) => {
       session: {
         id: session.id,
         topicOrRoleId: session.topic_or_role_id,
+        type: session.topics_or_roles?.type,
+        topicName: session.topics_or_roles?.raw_input,
         status: session.status,
         currentQuestionIndex: session.current_question_index,
         totalQuestions: session.total_questions,

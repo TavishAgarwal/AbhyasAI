@@ -2,7 +2,11 @@
 // AbhyasAI — Multidimensional Elo Rating System
 // Pure functions for updating learner skill ratings (θ_u) and question difficulty (β_i).
 
-const K_FACTOR = 32;
+// K=0.4 is calibrated for a 0-centered rating scale (not traditional chess 1500).
+// With ratings near 0 and the logistic sigmoid, K=0.4 gives rating shifts of
+// ±0.1–0.4 per answer — smooth convergence over a 5–10 question session.
+// Spec suggests K≈32, which is for chess-scale (1500-centered) ratings.
+const K_FACTOR = 0.4;
 
 /**
  * Calculates the expected performance (E) of a learner on a question.
@@ -11,9 +15,8 @@ const K_FACTOR = 32;
  * @returns {number} Expected performance between 0.0 and 1.0
  */
 function getExpectedPerformance(learnerRating, questionDifficulty) {
-  // E = 1 / (1 + 10^((β_i - θ_u) / 400))
-  // standard Elo formula
-  return 1.0 / (1.0 + Math.pow(10, (questionDifficulty - learnerRating) / 400.0));
+  // E = 1 / (1 + exp(-(θ_u - β_i)))
+  return 1.0 / (1.0 + Math.exp(-(learnerRating - questionDifficulty)));
 }
 
 /**

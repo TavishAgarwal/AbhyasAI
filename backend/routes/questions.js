@@ -17,7 +17,7 @@ router.post('/generate', async (req, res) => {
   const startTime = Date.now();
 
   try {
-    const { topicOrRoleId, count } = req.body;
+    const { topicOrRoleId, count, previousScore, previousQuestions } = req.body;
 
     // ── Validation ──────────────────────────────────────────
     if (!topicOrRoleId || !UUID_REGEX.test(topicOrRoleId)) {
@@ -61,13 +61,16 @@ router.post('/generate', async (req, res) => {
       });
     }
 
-    // ── 3. Call LLM to generate questions ───────────────────
+    // ── 3. Call LLM for Questions ───────────────────────────
     let generated;
     try {
       generated = await questionGenerator.generate({
         skills: skillRows,
         count: questionCount,
         topicContext: topicRow.raw_input,
+        type: topicRow.type,
+        previousScore,
+        previousQuestions
       });
     } catch (llmError) {
       console.error(JSON.stringify({

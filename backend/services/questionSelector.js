@@ -19,7 +19,7 @@ function selectNextQuestion(availableQuestions, currentSkillRatings, questionMap
   // Create a lookup for current ratings: skillId -> rating
   const ratingLookup = {};
   for (const sr of currentSkillRatings) {
-    ratingLookup[sr.skill_id] = sr.rating || 1500.0;
+    ratingLookup[sr.skill_id] = sr.rating || 0.0;
   }
 
   let bestQuestion = null;
@@ -39,8 +39,8 @@ function selectNextQuestion(availableQuestions, currentSkillRatings, questionMap
     let totalWeight = 0;
 
     for (const m of mappings) {
-      const theta_u = ratingLookup[m.skillId] || 1500.0;
-      const E = getExpectedPerformance(theta_u, question.difficulty_rating);
+      const theta_u = ratingLookup[m.skillId] || 0.0;
+      const E = getExpectedPerformance(theta_u, question.difficulty_rating || 0.0);
       totalE += E * m.weight;
       totalWeight += m.weight;
     }

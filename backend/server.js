@@ -11,6 +11,7 @@ const { v4: uuidv4 } = require('uuid');
 const { cleanupExpiredFiles } = require('./services/cleanupService');
 const { sanitiseError } = require('./utils/errorSanitiser');
 const { apiKeyAuth } = require('./middleware/apiAuth');
+const { supabase } = require('./services/supabaseClient');
 
 // Import routes
 const generateRoutes = require('./routes/generate');
@@ -21,9 +22,12 @@ const skillsRoutes = require('./routes/skills');
 const questionsRoutes = require('./routes/questions');
 const sessionsRoutes = require('./routes/sessions');
 const reportsRoutes = require('./routes/reports');
+const dashboardRoutes = require('./routes/dashboard');
+const studyMaterialRoutes = require('./routes/studyMaterial');
+const transcribeRoutes = require('./routes/transcribe');
 
 // Import cache service
-const cacheService = require('./services/cacheService');
+// cacheService removed — no longer needed after pivot from NCERT
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -83,8 +87,15 @@ const generateLimiter = rateLimit({
 // ============================================================
 
 // Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', service: 'AbhyasAI', time: new Date() });
+app.get('/health', async (req, res) => {
+  try {
+    // Check DB
+    await supabase.from('skills').select('id').limit(1);
+    
+    res.status(200).json({ status: 'ok', db: 'ok', timestamp: new Date().toISOString() });
+  } catch (err) {
+    res.status(503).json({ status: 'error', error: err.message });
+  }
 });
 
 // API routes (apiKeyAuth on credit-burning endpoints)
@@ -93,6 +104,9 @@ app.use('/api/skills', generateLimiter, apiKeyAuth, skillsRoutes);
 app.use('/api/questions', generateLimiter, apiKeyAuth, questionsRoutes);
 app.use('/api/sessions', generateLimiter, apiKeyAuth, sessionsRoutes);
 app.use('/api/reports', generateLimiter, apiKeyAuth, reportsRoutes);
+app.use('/api/dashboard', generateLimiter, apiKeyAuth, dashboardRoutes);
+app.use('/api/study-material', generateLimiter, apiKeyAuth, studyMaterialRoutes);
+app.use('/api/transcribe', generateLimiter, apiKeyAuth, transcribeRoutes);
 
 // Read-only endpoints — rate-limited to prevent enumeration
 const readLimiter = rateLimit({
@@ -130,25 +144,21 @@ app.use((err, req, res, next) => {
 // ============================================================
 // Start Server
 // ============================================================
-app.listen(PORT, () => {
-  console.log(`[${new Date().toISOString()}] AbhyasAI backend running on port ${PORT}`);
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`[${new Date().toISOString()}] AbhyasAI backend running on port ${PORT}`);
 
-  // Startup security checks
-  if (!process.env.WHATSAPP_APP_SECRET) {
-    console.warn(`[${new Date().toISOString()}] ⚠️  SECURITY WARNING: WHATSAPP_APP_SECRET is not set. Webhook signature verification is DISABLED. Set it in .env to enable.`);
-  }
-  if (!process.env.API_SECRET_KEY) {
-    console.warn(`[${new Date().toISOString()}] ⚠️  SECURITY WARNING: API_SECRET_KEY is not set. API endpoints are unauthenticated. Set it in .env for production.`);
-  }
+    // Startup security checks
+    if (!process.env.API_SECRET_KEY) {
+      console.warn(`[${new Date().toISOString()}] ⚠️  SECURITY WARNING: API_SECRET_KEY is not set. API endpoints are unauthenticated. Set it in .env for production.`);
+    }
 
-  // Warm cache in background — don't block startup
-  cacheService.warmCache().catch(err => {
-    console.error(`[${new Date().toISOString()}] Cache warm error:`, err.message);
+    // Expired file cleanup — run every hour (Fix 9)
+    setInterval(cleanupExpiredFiles, 60 * 60 * 1000);
+    cleanupExpiredFiles().catch(err => {
+      console.error(`[${new Date().toISOString()}] Initial cleanup error:`, err.message);
+    });
   });
+}
 
-  // Expired file cleanup — run every hour (Fix 9)
-  setInterval(cleanupExpiredFiles, 60 * 60 * 1000);
-  cleanupExpiredFiles().catch(err => {
-    console.error(`[${new Date().toISOString()}] Initial cleanup error:`, err.message);
-  });
-});
+module.exports = app;

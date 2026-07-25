@@ -18,6 +18,12 @@ function formatDelta(delta) {
   return `<span class="neutral">- 0</span>`;
 }
 
+function formatForDyslexia(text) {
+  if (!text) return '';
+  // Wrap text in dyslexia-para to match CSS and replace some common hard words if needed
+  return `<div class="dyslexia-para">${text}</div>`;
+}
+
 function renderSkillTable(skillProgression, format) {
   if (!skillProgression || skillProgression.length === 0) return 'No skill data available.';
 
@@ -110,8 +116,13 @@ function renderReport(reportJson, topicContext, format = 'standard') {
   const gapsHTML = renderList(reportJson.top_gaps, format, 'gap');
   const recommendationsHTML = renderList(reportJson.recommendations, format, 'action');
 
+  let summary = reportJson.summary || '';
+  if (format === 'dyslexia') {
+    summary = formatForDyslexia(summary);
+  }
+
   template = template.replace('{{topicContext}}', topicContext || 'Practice Session');
-  template = template.replace('{{summary}}', reportJson.summary || '');
+  template = template.replace('{{summary}}', summary);
   template = template.replace('{{overall_score}}', (reportJson.overall_score || 0).toFixed(2));
   template = template.replace('{{skillProgressionHTML}}', skillProgressionHTML);
   template = template.replace('{{strengthsHTML}}', strengthsHTML);

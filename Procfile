@@ -1,1 +1,2 @@
-web: node backend/server.js
+web: cd backend && npm start
+worker: cd backend && node worker.js

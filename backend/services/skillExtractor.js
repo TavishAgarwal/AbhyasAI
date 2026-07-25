@@ -104,7 +104,11 @@ async function extract({ rawInput, type }) {
       messages,
     });
 
-    let content = response.choices[0].message.content;
+    const choice = response.choices?.[0];
+    if (!choice?.message?.content) {
+      throw new Error('LLM returned empty response');
+    }
+    let content = choice.message.content;
     // Strip markdown code fences if present
     content = content.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
     return JSON.parse(content);

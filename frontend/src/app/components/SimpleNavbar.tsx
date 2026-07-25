@@ -1,12 +1,6 @@
-import { BookOpen } from 'lucide-react';
-import { Link, useLocation } from 'react-router';
+import { Link } from 'react-router';
 
 export function SimpleNavbar() {
-  const location = useLocation();
-  const isHome = location.pathname === '/';
-  const isGenerate = location.pathname === '/generate';
-  const isWhatsApp = location.pathname === '/whatsapp';
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -15,59 +9,38 @@ export function SimpleNavbar() {
   };
 
   return (
-    <nav className="bg-white border-b border-[#E2E8F0] sticky top-0 z-50 backdrop-blur-sm bg-white/95">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2D9B87] to-[#52B788] flex items-center justify-center shadow-sm">
-              <BookOpen className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <div className="text-[#2B3440] font-bold text-lg">AbhyasAI</div>
-            </div>
-          </Link>
+    <nav className="fixed top-0 w-full z-50 py-4 px-6 lg:px-12 transition-all duration-300 bg-white/40 backdrop-blur-md border-b border-white/20">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-between">
+        
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
+          <span className="font-sans font-bold text-xl text-[#0b1c30]">AbhyasAI</span>
+        </Link>
 
-          <div className="flex items-center gap-4 lg:gap-6">
-            {isHome ? (
-              <>
-                <button
-                  onClick={() => scrollToSection('how-it-works')}
-                  className="text-[#4A5568] hover:text-[#2D9B87] transition-colors font-medium hidden md:block"
-                >
-                  How it Works
-                </button>
-                <button
-                  onClick={() => scrollToSection('features')}
-                  className="text-[#4A5568] hover:text-[#2D9B87] transition-colors font-medium hidden md:block"
-                >
-                  Features
-                </button>
-              </>
-            ) : (
-              <Link
-                to="/"
-                className="text-[#4A5568] hover:text-[#2D9B87] transition-colors font-medium hidden md:block"
-              >
-                Home
-              </Link>
-            )}
-            {!isWhatsApp && (
-              <Link
-                to="/whatsapp"
-                className="text-[#4A5568] hover:text-[#2D9B87] transition-colors font-medium hidden sm:block"
-              >
-                WhatsApp
-              </Link>
-            )}
-            {!isGenerate && (
-              <Link
-                to="/generate"
-                className="px-4 lg:px-6 py-2 lg:py-2.5 bg-gradient-to-r from-[#2D9B87] to-[#52B788] text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all font-medium text-sm lg:text-base whitespace-nowrap"
-              >
-                Get Started
-              </Link>
-            )}
-          </div>
+        {/* Center Links */}
+        <div className="hidden md:flex items-center gap-8">
+          <button onClick={() => scrollToSection('curriculum')} className="text-[#464555] hover:text-[#4f46e5] font-medium transition-colors text-sm font-sans">
+            Curriculum
+          </button>
+          <button onClick={() => scrollToSection('interview')} className="text-[#464555] hover:text-[#4f46e5] font-medium transition-colors text-sm font-sans">
+            Interview Prep
+          </button>
+          <button onClick={() => scrollToSection('stories')} className="text-[#464555] hover:text-[#4f46e5] font-medium transition-colors text-sm font-sans">
+            Success Stories
+          </button>
+          <button onClick={() => scrollToSection('pricing')} className="text-[#464555] hover:text-[#4f46e5] font-medium transition-colors text-sm font-sans">
+            Pricing
+          </button>
+        </div>
+
+        {/* Right Actions */}
+        <div className="flex items-center gap-4">
+          <Link to="/whatsapp" className="text-[#464555] hover:text-[#0b1c30] font-medium text-sm font-sans hidden sm:block">
+            Log In
+          </Link>
+          <Link to="/generate" className="glass-button text-sm font-sans">
+            Get Started
+          </Link>
         </div>
       </div>
     </nav>
