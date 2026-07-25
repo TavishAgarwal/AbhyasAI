@@ -1,0 +1,142 @@
+// backend/services/answerEvaluator.js
+// AbhyasAI — LLM-powered answer evaluator with technical and behavioral rubrics.
+
+const OpenAI = require('openai');
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  timeout: 60 * 1000,
+  maxRetries: 0, // Manual retry
+});
+
+// Prompt injection mitigation
+const DELIMITER_START = '=== USER ANSWER START ===';
+const DELIMITER_END = '=== USER ANSWER END ===';
+
+function sanitiseInput(text) {
+  return text
+    .replace(/=== USER ANSWER START ===/g, '')
+    .replace(/=== USER ANSWER END ===/g, '')
+    .replace(/ignore (all |previous |the )?instructions?/gi, '[REDACTED]')
+    .replace(/system prompt/gi, '[REDACTED]')
+    .trim();
+}
+
+// ============================================================
+// System Prompts for Rubrics
+// ============================================================
+
+const TECHNICAL_SYSTEM_PROMPT = `You are an expert technical interviewer evaluating a candidate's answer.
+Given a question, the expected answer points, and the candidate's answer, evaluate their response.
+
+Rubric for Technical Questions:
+- Correctness (40%): Is the information factually accurate?
+- Completeness (30%): Did they cover the expected answer points?
+- Clarity (20%): Is the explanation clear and easy to follow?
+- Examples (10%): Did they use relevant examples to illustrate their points?
+
+Rules:
+- Provide a score between 0.0 and 1.0 based on the rubric above.
+- Identify 1-3 specific strengths in their answer.
+- Identify 1-3 specific gaps or areas for improvement.
+- Suggest 1-2 actionable resources or study tips based on their gaps.
+- Return ONLY valid JSON matching the schema below. No markdown fences.
+
+Schema:
+{
+  "score": 0.85,
+  "strengths": ["string"],
+  "gaps": ["string"],
+  "resources": ["string"],
+  "rubric_details": {
+    "correctness": 0.9,
+    "completeness": 0.8,
+    "clarity": 0.8,
+    "examples": 0.9
+  }
+}`;
+
+const BEHAVIORAL_SYSTEM_PROMPT = `You are an expert behavioral interviewer evaluating a candidate's answer using the STAR method.
+Given a behavioral question and the candidate's answer, evaluate their response.
+
+Rubric for Behavioral Questions (STAR):
+- Situation (25%): Did they clearly set the context and describe the situation?
+- Task (20%): Did they explain their specific role and the challenge they faced?
+- Action (35%): Did they detail the specific steps they took to address the challenge?
+- Result (20%): Did they share the outcome, impact, and what they learned?
+
+Rules:
+- Provide a score between 0.0 and 1.0 based on the rubric above.
+- Identify 1-3 specific strengths in their answer.
+- Identify 1-3 specific gaps or areas for improvement.
+- Suggest 1-2 actionable resources or interview tips based on their gaps.
+- Return ONLY valid JSON matching the schema below. No markdown fences.
+
+Schema:
+{
+  "score": 0.75,
+  "strengths": ["string"],
+  "gaps": ["string"],
+  "resources": ["string"],
+  "rubric_details": {
+    "situation": 0.8,
+    "task": 0.7,
+    "action": 0.8,
+    "result": 0.6
+  }
+}`;
+
+// ============================================================
+// Core evaluation function
+// ============================================================
+
+/**
+ * Calls GPT-4o-mini to evaluate an answer based on question type.
+ * @param {Object} params
+ * @param {string} params.questionText - The question asked
+ * @param {string} params.questionType - 'technical' or 'behavioral'
+ * @param {Array<string>} params.expectedPoints - Expected key points
+ * @param {string} params.answerText - The user's answer
+ * @returns {Promise<{ score: number, strengths: string[], gaps: string[], resources: string[], rubric_details: Object }>}
+ */
+async function evaluate({ questionText, questionType, expectedPoints, answerText }) {
+  const systemPrompt = questionType === 'behavioral' ? BEHAVIORAL_SYSTEM_PROMPT : TECHNICAL_SYSTEM_PROMPT;
+  const sanitisedAnswer = sanitiseInput(answerText);
+
+  let userMessageContent = `Question: ${questionText}\n`;
+  if (expectedPoints && expectedPoints.length > 0) {
+    userMessageContent += `Expected Answer Points:\n- ${expectedPoints.join('\n- ')}\n`;
+  }
+  userMessageContent += `\nCandidate's Answer:\n${DELIMITER_START}\n${sanitisedAnswer}\n${DELIMITER_END}`;
+
+  const messages = [
+    { role: 'system', content: systemPrompt },
+    { role: 'user', content: userMessageContent },
+  ];
+
+  const callLLM = async () => {
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      temperature: 0.1, // Low temp for consistent evaluation
+      max_tokens: 1500,
+      messages,
+    });
+
+    let content = response.choices[0].message.content;
+    content = content.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+    return JSON.parse(content);
+  };
+
+  try {
+    return await callLLM();
+  } catch (error) {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      return await callLLM();
+    } catch (retryError) {
+      throw new Error(`Answer evaluation failed after retry: ${retryError.message}`);
+    }
+  }
+}
+
+module.exports = { evaluate };

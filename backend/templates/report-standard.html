@@ -1,0 +1,62 @@
+<div class="standard-content">
+  <h1>Session Report: {{topicContext}}</h1>
+  
+  <div class="summary-box">
+    <h2>Overall Summary</h2>
+    <p>{{summary}}</p>
+    <p><strong>Overall Score:</strong> {{overall_score}} / 1.0</p>
+  </div>
+
+  <h2>Skill Progression</h2>
+  <table class="skill-table">
+    <thead>
+      <tr>
+        <th>Skill</th>
+        <th>Category</th>
+        <th>Start Rating</th>
+        <th>End Rating</th>
+        <th>Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{skillProgressionHTML}}
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div class="col">
+      <h2>Top Strengths</h2>
+      <ul>
+        {{strengthsHTML}}
+      </ul>
+    </div>
+    <div class="col">
+      <h2>Top Areas for Improvement</h2>
+      <ul>
+        {{gapsHTML}}
+      </ul>
+    </div>
+  </div>
+
+  <h2>Recommended Next Steps</h2>
+  <ol>
+    {{recommendationsHTML}}
+  </ol>
+</div>
+
+<style>
+  .standard-content { font-family: 'Arial', sans-serif; color: #333; line-height: 1.6; }
+  .summary-box { background: #f8fafc; padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px solid #e2e8f0; }
+  h1 { color: #0f172a; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+  h2 { color: #1e293b; margin-top: 24px; margin-bottom: 12px; font-size: 1.25rem; }
+  .skill-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  .skill-table th, .skill-table td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+  .skill-table th { background: #f1f5f9; font-weight: 600; color: #475569; }
+  .positive { color: #16a34a; font-weight: bold; }
+  .negative { color: #dc2626; font-weight: bold; }
+  .neutral { color: #64748b; }
+  .two-col { display: flex; gap: 24px; margin-bottom: 24px; }
+  .col { flex: 1; }
+  ul, ol { padding-left: 20px; }
+  li { margin-bottom: 8px; }
+</style>

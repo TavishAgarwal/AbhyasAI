@@ -1,0 +1,2607 @@
+[
+  {
+    "class": 1,
+    "subjectDisplay": "Mridang",
+    "subjectDb": "English",
+    "bookCode": "aemr1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "My Family and Me",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aemr101.pdf",
+        "rawValue": "aemr1"
+      },
+      {
+        "num": 2,
+        "title": "Greetings",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aemr102.pdf",
+        "rawValue": "aemr1"
+      },
+      {
+        "num": 3,
+        "title": "Life Around Us",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aemr103.pdf",
+        "rawValue": "aemr1"
+      },
+      {
+        "num": 6,
+        "title": "Food",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aemr106.pdf",
+        "rawValue": "aemr1"
+      },
+      {
+        "num": 8,
+        "title": "Seasons",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aemr108.pdf",
+        "rawValue": "aemr1"
+      },
+      {
+        "num": 9,
+        "title": "Anandi’s Rainbow",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aemr109.pdf",
+        "rawValue": "aemr1"
+      }
+    ]
+  },
+  {
+    "class": 1,
+    "subjectDisplay": "Joyful-Mathematics (English)",
+    "subjectDb": "Mathematics",
+    "bookCode": "aejm1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Finding the",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm101.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 2,
+        "title": "What is Long?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm102.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 3,
+        "title": "Mango Treat",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm103.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 4,
+        "title": "Making",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm104.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 5,
+        "title": "How Many?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm105.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 6,
+        "title": "Vegetable Farm",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm106.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 7,
+        "title": "Lina’s Family",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm107.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 8,
+        "title": "Fun with Numbers",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm108.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 9,
+        "title": "Utsav",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm109.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 10,
+        "title": "How do I Spend",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm110.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 11,
+        "title": "How Many Times?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm111.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 12,
+        "title": "How Much Can",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm112.pdf",
+        "rawValue": "aejm1"
+      },
+      {
+        "num": 13,
+        "title": "So Many Toys",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/aejm113.pdf",
+        "rawValue": "aejm1"
+      }
+    ]
+  },
+  {
+    "class": 2,
+    "subjectDisplay": "Mridang",
+    "subjectDb": "English",
+    "bookCode": "bemr1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Fun with Friends",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bemr101.pdf",
+        "rawValue": "bemr1"
+      },
+      {
+        "num": 3,
+        "title": "Welcome to My World",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bemr103.pdf",
+        "rawValue": "bemr1"
+      },
+      {
+        "num": 4,
+        "title": "Seeing without Seeing",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bemr104.pdf",
+        "rawValue": "bemr1"
+      },
+      {
+        "num": 5,
+        "title": "Going places",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bemr105.pdf",
+        "rawValue": "bemr1"
+      },
+      {
+        "num": 6,
+        "title": "Between Home and School",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bemr106.pdf",
+        "rawValue": "bemr1"
+      },
+      {
+        "num": 8,
+        "title": "Life Around Us",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bemr108.pdf",
+        "rawValue": "bemr1"
+      },
+      {
+        "num": 9,
+        "title": "My Name",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bemr109.pdf",
+        "rawValue": "bemr1"
+      },
+      {
+        "num": 12,
+        "title": "Harmony",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bemr112.pdf",
+        "rawValue": "bemr1"
+      }
+    ]
+  },
+  {
+    "class": 2,
+    "subjectDisplay": "Joyful-Mathematics (English)",
+    "subjectDb": "Mathematics",
+    "bookCode": "bejm1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Shapes Around us",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm102.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 3,
+        "title": "Fun with Numbers",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm103.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 4,
+        "title": "Shadow Story",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm104.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 5,
+        "title": "Playing with Lines",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm105.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 6,
+        "title": "Decoration for",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm106.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 7,
+        "title": "Rani’s Gift",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm107.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 8,
+        "title": "Grouping and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm108.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 9,
+        "title": "Which Season is it?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm109.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 10,
+        "title": "Fun at the Fair",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm110.pdf",
+        "rawValue": "bejm1"
+      },
+      {
+        "num": 11,
+        "title": "Data Handling",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/bejm111.pdf",
+        "rawValue": "bejm1"
+      }
+    ]
+  },
+  {
+    "class": 3,
+    "subjectDisplay": "Khel Yoga",
+    "subjectDb": "English",
+    "bookCode": "ceky1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Kicking and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceky102.pdf",
+        "rawValue": "ceky1"
+      },
+      {
+        "num": 3,
+        "title": "Strike the Ball",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceky103.pdf",
+        "rawValue": "ceky1"
+      },
+      {
+        "num": 4,
+        "title": "Little Steps",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceky104.pdf",
+        "rawValue": "ceky1"
+      },
+      {
+        "num": 7,
+        "title": "Yogic Practices",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceky107.pdf",
+        "rawValue": "ceky1"
+      }
+    ]
+  },
+  {
+    "class": 3,
+    "subjectDisplay": "Maths Mela",
+    "subjectDb": "Mathematics",
+    "bookCode": "cemm1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "What's in a",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm101.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 2,
+        "title": "Toy Joy",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm102.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 3,
+        "title": "Double Century",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm103.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 4,
+        "title": "Vacation with",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm104.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 6,
+        "title": "House of",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm106.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 7,
+        "title": "Raksha",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm107.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 8,
+        "title": "Fair Share",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm108.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 10,
+        "title": "What are the various activities shown in the picture?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm110.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 11,
+        "title": "Filling and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm111.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 12,
+        "title": "Kishan had 364 saplings of different herbs and flowers. Then, he",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm112.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 13,
+        "title": "Time Goes On",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm113.pdf",
+        "rawValue": "cemm1"
+      },
+      {
+        "num": 14,
+        "title": "What do you see in the picture?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/cemm114.pdf",
+        "rawValue": "cemm1"
+      }
+    ]
+  },
+  {
+    "class": 3,
+    "subjectDisplay": "Our Wondrous World",
+    "subjectDb": "EVS",
+    "bookCode": "ceev1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Family and Friends shows • Collect relevant, local",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev101.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 2,
+        "title": "Going to the Mela",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev102.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 3,
+        "title": "Celebrating",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev103.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 4,
+        "title": "Getting to Know Plants • Have a display of animal",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev104.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 5,
+        "title": "Plants and Animals",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev105.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 6,
+        "title": "Living in Harmony",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev106.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 7,
+        "title": "Water — A Precious Gift highlights",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev107.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 8,
+        "title": "Food We Eat",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev108.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 9,
+        "title": "Staying Healthy",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev109.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 11,
+        "title": "Making Things",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev111.pdf",
+        "rawValue": "ceev1"
+      },
+      {
+        "num": 12,
+        "title": "Taking Charge of Waste",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/ceev112.pdf",
+        "rawValue": "ceev1"
+      }
+    ]
+  },
+  {
+    "class": 4,
+    "subjectDisplay": "Khel Yoga",
+    "subjectDb": "English",
+    "bookCode": "deky1",
+    "subSubject": null,
+    "chapters": []
+  },
+  {
+    "class": 4,
+    "subjectDisplay": "Math-Mela",
+    "subjectDb": "Mathematics",
+    "bookCode": "demm1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Shapes Around Us",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm101.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 2,
+        "title": "Look at the picture and answer",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm102.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 3,
+        "title": "Patterns",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm103.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 4,
+        "title": "Thousands",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm104.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 5,
+        "title": "Sharing and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm105.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 6,
+        "title": "Look at the picture. What are the students measuring? Put a tick",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm106.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 8,
+        "title": "Look at the pictures given and write",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm108.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 10,
+        "title": "Player 1 starts by choosing",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm110.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 11,
+        "title": "Ink Design",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm111.pdf",
+        "rawValue": "demm1"
+      },
+      {
+        "num": 14,
+        "title": "Data Handling",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/demm114.pdf",
+        "rawValue": "demm1"
+      }
+    ]
+  },
+  {
+    "class": 4,
+    "subjectDisplay": "Our Wonderous World",
+    "subjectDb": "EVS",
+    "bookCode": "deev1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Exploring Our",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deev102.pdf",
+        "rawValue": "deev1"
+      },
+      {
+        "num": 3,
+        "title": "Teacher to Facilitate",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deev103.pdf",
+        "rawValue": "deev1"
+      },
+      {
+        "num": 4,
+        "title": "Growing up",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deev104.pdf",
+        "rawValue": "deev1"
+      },
+      {
+        "num": 6,
+        "title": "Happy and Healthy",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deev106.pdf",
+        "rawValue": "deev1"
+      },
+      {
+        "num": 8,
+        "title": "How Things are",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deev108.pdf",
+        "rawValue": "deev1"
+      },
+      {
+        "num": 10,
+        "title": "Our Sky",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deev110.pdf",
+        "rawValue": "deev1"
+      }
+    ]
+  },
+  {
+    "class": 4,
+    "subjectDisplay": "Looking Arround",
+    "subjectDb": "EVS",
+    "bookCode": "deap1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Who has got my ears?Who has got my ears?Who has got my ears?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap102.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 3,
+        "title": "Nandu Wakes UpNandu Wakes UpNandu Wakes Up",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap103.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 5,
+        "title": "My name is Anita Khushwaha. I live in Bochaha village. This is",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap105.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 6,
+        "title": "Omana’s Journey",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap106.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 8,
+        "title": "After our long train journey",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap108.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 9,
+        "title": "Here are some pictures of families. These are the families of",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap109.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 10,
+        "title": "Hu-tu-tu, Hu-tu-tu, Hu-tu-tu",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap110.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 12,
+        "title": "My name is Chetandas. Many years ago I used to teach children",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap112.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 14,
+        "title": "I am Basva. My father is a farmer. We live in Belvanika",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap114.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 15,
+        "title": "Day at night!Day at night!Day at night!",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap115.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 16,
+        "title": "Balmandir",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap116.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 17,
+        "title": "I came to Mumbai a month ago. Since we came, mother has",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap117.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 18,
+        "title": "What to Drink?What to Drink?What to Drink?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap118.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 19,
+        "title": "Abdul in the GardenAbdul in the GardenAbdul in the Garden",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap119.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 21,
+        "title": "Trring…! The doorbell rang. When Manpreet opened the",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap121.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 22,
+        "title": "Tug of WarTug of WarTug of War",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap122.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 23,
+        "title": "Vani and Prasad live in a village called Mukhtapur. Their",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap123.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 24,
+        "title": "Today, there was a lot of activity at Maalu’s house. Chittappan",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap124.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 25,
+        "title": "I can be powdered fine",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap125.pdf",
+        "rawValue": "deap1"
+      },
+      {
+        "num": 27,
+        "title": "Chuskit’s DreamChuskit’s DreamChuskit’s Dream",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/deap127.pdf",
+        "rawValue": "deap1"
+      }
+    ]
+  },
+  {
+    "class": 5,
+    "subjectDisplay": "Marigold",
+    "subjectDb": "English",
+    "bookCode": "eeen1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Read and Enjoy",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeen101.pdf",
+        "rawValue": "eeen1"
+      },
+      {
+        "num": 5,
+        "title": "Rip Van Winkle",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeen105.pdf",
+        "rawValue": "eeen1"
+      },
+      {
+        "num": 6,
+        "title": "Recite and Discuss",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeen106.pdf",
+        "rawValue": "eeen1"
+      },
+      {
+        "num": 7,
+        "title": "Topsy-turvy Land",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeen107.pdf",
+        "rawValue": "eeen1"
+      },
+      {
+        "num": 9,
+        "title": "Sing a Song of People",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeen109.pdf",
+        "rawValue": "eeen1"
+      },
+      {
+        "num": 10,
+        "title": "Malu Bhalu",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeen110.pdf",
+        "rawValue": "eeen1"
+      }
+    ]
+  },
+  {
+    "class": 5,
+    "subjectDisplay": "Khel Yoga",
+    "subjectDb": "English",
+    "bookCode": "eeky1",
+    "subSubject": null,
+    "chapters": []
+  },
+  {
+    "class": 5,
+    "subjectDisplay": "Math Mela",
+    "subjectDb": "Mathematics",
+    "bookCode": "eemm1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Fractions",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemm102.pdf",
+        "rawValue": "eemm1"
+      },
+      {
+        "num": 3,
+        "title": "Angles as Turns",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemm103.pdf",
+        "rawValue": "eemm1"
+      },
+      {
+        "num": 5,
+        "title": "Far and Near",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemm105.pdf",
+        "rawValue": "eemm1"
+      },
+      {
+        "num": 8,
+        "title": "Iron Almirah – 40 g",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemm108.pdf",
+        "rawValue": "eemm1"
+      },
+      {
+        "num": 9,
+        "title": "Coconut Farm",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemm109.pdf",
+        "rawValue": "eemm1"
+      },
+      {
+        "num": 11,
+        "title": "Grandmother’s",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemm111.pdf",
+        "rawValue": "eemm1"
+      },
+      {
+        "num": 13,
+        "title": "Animal Jumps",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemm113.pdf",
+        "rawValue": "eemm1"
+      },
+      {
+        "num": 14,
+        "title": "Maps And",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemm114.pdf",
+        "rawValue": "eemm1"
+      }
+    ]
+  },
+  {
+    "class": 5,
+    "subjectDisplay": "Math-Magic",
+    "subjectDb": "Mathematics",
+    "bookCode": "eemh1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Shapes and Angles",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh102.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 3,
+        "title": "How Many Squares?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh103.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 4,
+        "title": "Parts and Wholes",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh104.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 6,
+        "title": "Be My Multiple, I'll be Your Factor",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh106.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 7,
+        "title": "Can You See the Pattern?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh107.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 8,
+        "title": "Mapping Your Way",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh108.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 9,
+        "title": "Boxes and Sketches",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh109.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 10,
+        "title": "Tenths and Hundredths",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh110.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 11,
+        "title": "Area and its Boundary",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh111.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 12,
+        "title": "Smart Charts",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh112.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 13,
+        "title": "Ways to Multiply and Divide",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh113.pdf",
+        "rawValue": "eemh1"
+      },
+      {
+        "num": 14,
+        "title": "How Big? How Heavy?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eemh114.pdf",
+        "rawValue": "eemh1"
+      }
+    ]
+  },
+  {
+    "class": 5,
+    "subjectDisplay": "Our Wondrous World",
+    "subjectDb": "EVS",
+    "bookCode": "eeev1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Water—The Essence of Life",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev101.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 2,
+        "title": "Journey of a River",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev102.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 3,
+        "title": "‘The Mystery of Food’ and Chapter",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev103.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 4,
+        "title": "Our School — A Happy Place",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev104.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 5,
+        "title": "Our Vibrant Country",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev105.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 6,
+        "title": "Some Unique Places",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev106.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 7,
+        "title": "Energy—How Things Work",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev107.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 8,
+        "title": "Clothes — How Things are Made",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev108.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 9,
+        "title": "Rhythms of Nature",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev109.pdf",
+        "rawValue": "eeev1"
+      },
+      {
+        "num": 10,
+        "title": "Earth — Our Shared Home",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeev110.pdf",
+        "rawValue": "eeev1"
+      }
+    ]
+  },
+  {
+    "class": 5,
+    "subjectDisplay": "Looking Arround",
+    "subjectDb": "EVS",
+    "bookCode": "eeap1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Super Senses",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap101.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 4,
+        "title": "Mangoes Round the Year",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap104.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 5,
+        "title": "Seeds and Seeds",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap105.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 6,
+        "title": "Every Drop Counts",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap106.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 7,
+        "title": "Experiments with Water",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap107.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 9,
+        "title": "Up You Go!",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap109.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 10,
+        "title": "Walls Tell",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap110.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 11,
+        "title": "Sunita in Space",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap111.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 12,
+        "title": "What if it Finishes...?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap112.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 14,
+        "title": "When the Earth Shook!",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap114.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 15,
+        "title": "Blow Hot, Blow Cold",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap115.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 16,
+        "title": "Who will do this Work?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap116.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 17,
+        "title": "Across the Wall",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap117.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 18,
+        "title": "No Place for Us?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap118.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 20,
+        "title": "Whose Forests?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap120.pdf",
+        "rawValue": "eeap1"
+      },
+      {
+        "num": 21,
+        "title": "Like Father",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/eeap121.pdf",
+        "rawValue": "eeap1"
+      }
+    ]
+  },
+  {
+    "class": 6,
+    "subjectDisplay": "Kaushal Bodh",
+    "subjectDb": "English",
+    "bookCode": "fekb1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 5,
+        "title": "Biodiversity",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekb105.pdf",
+        "rawValue": "fekb1"
+      }
+    ]
+  },
+  {
+    "class": 6,
+    "subjectDisplay": "Khel Yatra",
+    "subjectDb": "English",
+    "bookCode": "feky1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Motor",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/feky102.pdf",
+        "rawValue": "feky1"
+      },
+      {
+        "num": 3,
+        "title": "Skills of",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/feky103.pdf",
+        "rawValue": "feky1"
+      },
+      {
+        "num": 5,
+        "title": "Yoga",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/feky105.pdf",
+        "rawValue": "feky1"
+      }
+    ]
+  },
+  {
+    "class": 6,
+    "subjectDisplay": "Exploring Society India and Beyond",
+    "subjectDb": "English",
+    "bookCode": "fees1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Landforms Timeline",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees101.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 2,
+        "title": "Oceans and Continents",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees102.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 3,
+        "title": "Landforms and Life",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees103.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 4,
+        "title": "How do we measure historical",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees104.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 5,
+        "title": "India, That Is Bharat",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees105.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 6,
+        "title": "What is a civilisation?",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees106.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 7,
+        "title": "India’s Cultural Roots",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees107.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 8,
+        "title": "What is meant by ‘unity",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees108.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 9,
+        "title": "Why is the family unit",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees109.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 10,
+        "title": "What is the meaning of",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees110.pdf",
+        "rawValue": "fees1"
+      },
+      {
+        "num": 11,
+        "title": "Local Government in",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fees111.pdf",
+        "rawValue": "fees1"
+      }
+    ]
+  },
+  {
+    "class": 6,
+    "subjectDisplay": "Curiosity",
+    "subjectDb": "Science",
+    "bookCode": "fecu1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Diversity in the Living World",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu102.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 3,
+        "title": "Mindful Eating: A Path",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu103.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 4,
+        "title": "Exploring Magnets",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu104.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 5,
+        "title": "Measurement of Length",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu105.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 6,
+        "title": "Materials Around Us",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu106.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 7,
+        "title": "Temperature and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu107.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 9,
+        "title": "Methods of Separation",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu109.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 10,
+        "title": "Living Creatures: Exploring",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu110.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 11,
+        "title": "Nature’s Treasures",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu111.pdf",
+        "rawValue": "fecu1"
+      },
+      {
+        "num": 12,
+        "title": "Beyond Earth",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fecu112.pdf",
+        "rawValue": "fecu1"
+      }
+    ]
+  },
+  {
+    "class": 6,
+    "subjectDisplay": "Poorvi",
+    "subjectDb": "Social Science",
+    "bookCode": "fepr1",
+    "subSubject": "History",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "FabLes and FoLk TaLes",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fepr101.pdf",
+        "rawValue": "fepr1"
+      },
+      {
+        "num": 2,
+        "title": "FrIendshIp",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fepr102.pdf",
+        "rawValue": "fepr1"
+      },
+      {
+        "num": 3,
+        "title": "NurturiNg Nature",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fepr103.pdf",
+        "rawValue": "fepr1"
+      },
+      {
+        "num": 4,
+        "title": "SportS and WeLLneSS",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fepr104.pdf",
+        "rawValue": "fepr1"
+      },
+      {
+        "num": 5,
+        "title": "Culture and tradition",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fepr105.pdf",
+        "rawValue": "fepr1"
+      }
+    ]
+  },
+  {
+    "class": 6,
+    "subjectDisplay": "Kriti-I",
+    "subjectDb": "Social Science",
+    "bookCode": "fekr1",
+    "subSubject": "History",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Visual Arts",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr101.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 2,
+        "title": "Changing the Typical",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr102.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 3,
+        "title": "Portraying People",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr103.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 4,
+        "title": "Paper Crafts",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr104.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 5,
+        "title": "Seals to Prints",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr105.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 6,
+        "title": "MUSIC",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr106.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 7,
+        "title": "Musical Instruments",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr107.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 8,
+        "title": "Taal or Talam and Raga or",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr108.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 9,
+        "title": "Melodies of Diversity",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr109.pdf",
+        "rawValue": "fekr1"
+      },
+      {
+        "num": 10,
+        "title": "Activity 1: Try",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fekr110.pdf",
+        "rawValue": "fekr1"
+      }
+    ]
+  },
+  {
+    "class": 6,
+    "subjectDisplay": "Ganita Prakash",
+    "subjectDb": "Social Science",
+    "bookCode": "fegp1",
+    "subSubject": "Geography",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Patterns in",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fegp101.pdf",
+        "rawValue": "fegp1"
+      },
+      {
+        "num": 2,
+        "title": "Lines and angLes",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fegp102.pdf",
+        "rawValue": "fegp1"
+      },
+      {
+        "num": 3,
+        "title": "Number Play",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fegp103.pdf",
+        "rawValue": "fegp1"
+      },
+      {
+        "num": 4,
+        "title": "Data HanDling anD",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fegp104.pdf",
+        "rawValue": "fegp1"
+      },
+      {
+        "num": 5,
+        "title": "Prime Time",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fegp105.pdf",
+        "rawValue": "fegp1"
+      },
+      {
+        "num": 6,
+        "title": "Perimeter and Area",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fegp106.pdf",
+        "rawValue": "fegp1"
+      },
+      {
+        "num": 7,
+        "title": "Fractions",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fegp107.pdf",
+        "rawValue": "fegp1"
+      },
+      {
+        "num": 8,
+        "title": "Playing with",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/fegp108.pdf",
+        "rawValue": "fegp1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "The Alien Hand Supplementry",
+    "subjectDb": "English",
+    "bookCode": "geah1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Though so very small, the ant is unbelievably intelligent",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/geah101.pdf",
+        "rawValue": "geah1"
+      },
+      {
+        "num": 2,
+        "title": "Kari, a five-month-old baby elephant, lives and grows up",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/geah102.pdf",
+        "rawValue": "geah1"
+      },
+      {
+        "num": 6,
+        "title": "Grandfather finds a tiny tiger-cub in the forest and brings",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/geah106.pdf",
+        "rawValue": "geah1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Exploring Society India and Beyond Part 2",
+    "subjectDb": "English",
+    "bookCode": "gees2",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "What are the main",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gees201.pdf",
+        "rawValue": "gees2"
+      },
+      {
+        "num": 2,
+        "title": "India and Her Neighbours",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gees202.pdf",
+        "rawValue": "gees2"
+      },
+      {
+        "num": 3,
+        "title": "What major changes",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gees203.pdf",
+        "rawValue": "gees2"
+      },
+      {
+        "num": 4,
+        "title": "Why are the 11th and 12th",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gees204.pdf",
+        "rawValue": "gees2"
+      },
+      {
+        "num": 5,
+        "title": "What has made India a home",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gees205.pdf",
+        "rawValue": "gees2"
+      },
+      {
+        "num": 6,
+        "title": "What is the difference between a",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gees206.pdf",
+        "rawValue": "gees2"
+      },
+      {
+        "num": 7,
+        "title": "What is physical infrastructure",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gees207.pdf",
+        "rawValue": "gees2"
+      },
+      {
+        "num": 8,
+        "title": "What is financial infrastructure",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gees208.pdf",
+        "rawValue": "gees2"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Science",
+    "subjectDb": "Science",
+    "bookCode": "gesc1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "absence of photosynthesis!",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc101.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 2,
+        "title": "Nutrition in Animals",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc102.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 3,
+        "title": "ou know that woollen clothes are and some of them are cold. Tea is hot",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc103.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 4,
+        "title": "Acids, Bases and Salts",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc104.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 5,
+        "title": "Physical and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc105.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 6,
+        "title": "Respiration in",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc106.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 7,
+        "title": "Transportation in",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc107.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 8,
+        "title": "Reproduction in Plants",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc108.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 9,
+        "title": "Motion and Time",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc109.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 10,
+        "title": "Electric Current",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc110.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 11,
+        "title": "Light",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc111.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 12,
+        "title": "Forests: Our Lifeline",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc112.pdf",
+        "rawValue": "gesc1"
+      },
+      {
+        "num": 13,
+        "title": "Wastewater Story",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gesc113.pdf",
+        "rawValue": "gesc1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "History-Our Pasts II",
+    "subjectDb": "Social Science",
+    "bookCode": "gess1",
+    "subSubject": "History",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Tracing Changes",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess101.pdf",
+        "rawValue": "gess1"
+      },
+      {
+        "num": 2,
+        "title": "Kings and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess102.pdf",
+        "rawValue": "gess1"
+      },
+      {
+        "num": 5,
+        "title": "Tribes, Nomads and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess105.pdf",
+        "rawValue": "gess1"
+      },
+      {
+        "num": 6,
+        "title": "Devotional Paths",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess106.pdf",
+        "rawValue": "gess1"
+      },
+      {
+        "num": 8,
+        "title": "Eighteenth-Century",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess108.pdf",
+        "rawValue": "gess1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Geography-Our Environment",
+    "subjectDb": "Social Science",
+    "bookCode": "gess2",
+    "subSubject": "Geography",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Environment",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess201.pdf",
+        "rawValue": "gess2"
+      },
+      {
+        "num": 2,
+        "title": "Inside Our Earth",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess202.pdf",
+        "rawValue": "gess2"
+      },
+      {
+        "num": 3,
+        "title": "Our Changing Earth",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess203.pdf",
+        "rawValue": "gess2"
+      },
+      {
+        "num": 5,
+        "title": "Water",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess205.pdf",
+        "rawValue": "gess2"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Social and Political Life-2",
+    "subjectDb": "Social Science",
+    "bookCode": "gess3",
+    "subSubject": "Political Science",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Equality in Indian Democracy",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess301.pdf",
+        "rawValue": "gess3"
+      },
+      {
+        "num": 3,
+        "title": "our state, and people are",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess303.pdf",
+        "rawValue": "gess3"
+      },
+      {
+        "num": 4,
+        "title": "Growing up as Boys and Girls",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess304.pdf",
+        "rawValue": "gess3"
+      },
+      {
+        "num": 6,
+        "title": "Understanding Media 6565",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess306.pdf",
+        "rawValue": "gess3"
+      },
+      {
+        "num": 7,
+        "title": "Markets Around Us",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gess307.pdf",
+        "rawValue": "gess3"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Ganita Prakash",
+    "subjectDb": "Social Science",
+    "bookCode": "gegp1",
+    "subSubject": "Geography",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Large Numbers",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp101.pdf",
+        "rawValue": "gegp1"
+      },
+      {
+        "num": 2,
+        "title": "Arithmetic",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp102.pdf",
+        "rawValue": "gegp1"
+      },
+      {
+        "num": 4,
+        "title": "Expressions",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp104.pdf",
+        "rawValue": "gegp1"
+      },
+      {
+        "num": 5,
+        "title": "Parallel and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp105.pdf",
+        "rawValue": "gegp1"
+      },
+      {
+        "num": 6,
+        "title": "Number Play",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp106.pdf",
+        "rawValue": "gegp1"
+      },
+      {
+        "num": 8,
+        "title": "Working with",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp108.pdf",
+        "rawValue": "gegp1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Curiosity",
+    "subjectDb": "Science",
+    "bookCode": "gecu1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Exploring",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu102.pdf",
+        "rawValue": "gecu1"
+      },
+      {
+        "num": 3,
+        "title": "Electricity",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu103.pdf",
+        "rawValue": "gecu1"
+      },
+      {
+        "num": 5,
+        "title": "Changes Around Us",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu105.pdf",
+        "rawValue": "gecu1"
+      },
+      {
+        "num": 6,
+        "title": "Adolescence",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu106.pdf",
+        "rawValue": "gecu1"
+      },
+      {
+        "num": 7,
+        "title": "Heat Transfer",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu107.pdf",
+        "rawValue": "gecu1"
+      },
+      {
+        "num": 8,
+        "title": "Measurement of",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu108.pdf",
+        "rawValue": "gecu1"
+      },
+      {
+        "num": 9,
+        "title": "Life Processes",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu109.pdf",
+        "rawValue": "gecu1"
+      },
+      {
+        "num": 11,
+        "title": "inddChapter 11.indd 153153 4/3/2025 4:56:22 PM4:56:22 PM",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu111.pdf",
+        "rawValue": "gecu1"
+      },
+      {
+        "num": 12,
+        "title": "Earth, Moon, and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gecu112.pdf",
+        "rawValue": "gecu1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Kaushal Bodh",
+    "subjectDb": "English",
+    "bookCode": "gekb1",
+    "subSubject": null,
+    "chapters": []
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Khel Yatra",
+    "subjectDb": "English",
+    "bookCode": "geky1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Basis of Physical",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/geky101.pdf",
+        "rawValue": "geky1"
+      },
+      {
+        "num": 2,
+        "title": "Motor Fitness",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/geky102.pdf",
+        "rawValue": "geky1"
+      },
+      {
+        "num": 4,
+        "title": "Skills of Sports",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/geky104.pdf",
+        "rawValue": "geky1"
+      },
+      {
+        "num": 6,
+        "title": "Yoga",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/geky106.pdf",
+        "rawValue": "geky1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Kriti",
+    "subjectDb": "Social Science",
+    "bookCode": "gekr1",
+    "subSubject": "History",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "உளளது நிிகழும் குறிிப்புக் கணிிப்பு க் கு ஏற்பட",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr101.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 2,
+        "title": "Say more without",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr102.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 3,
+        "title": "Let’s Design —",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr103.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 4,
+        "title": "Story of India’s",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr104.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 5,
+        "title": "नकाारंं प्रा ाण नामाानंदकाारंमा नलंं वि� दः�।",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr105.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 6,
+        "title": "Music, Emotions",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr106.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 7,
+        "title": "Ragas and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr107.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 9,
+        "title": "Performance",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr109.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 10,
+        "title": "वि�नाा तुु नाृत्यशाास्त्रेेण चि�त्रसूू त्रं सूुदुुवि�िदुम््।।३।।",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr110.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 11,
+        "title": "Dance Vocabulary",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr111.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 12,
+        "title": "Dance, You",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr112.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 13,
+        "title": "Personalities",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr113.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 14,
+        "title": "NATYA",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr114.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 15,
+        "title": "कलाानां ा� प्रवरं � चि�त्रं �धर्मम कार्मार्थ म र्मोक्षद र्म्।",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr115.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 16,
+        "title": "Nature’s",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr116.pdf",
+        "rawValue": "gekr1"
+      },
+      {
+        "num": 18,
+        "title": "TEXTILEs AND",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gekr118.pdf",
+        "rawValue": "gekr1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Poorvi",
+    "subjectDb": "Social Science",
+    "bookCode": "gepr1",
+    "subSubject": "History",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Learning Together",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gepr101.pdf",
+        "rawValue": "gepr1"
+      },
+      {
+        "num": 2,
+        "title": "Wit and Humour",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gepr102.pdf",
+        "rawValue": "gepr1"
+      },
+      {
+        "num": 3,
+        "title": "Dreams and Discoveries",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gepr103.pdf",
+        "rawValue": "gepr1"
+      },
+      {
+        "num": 4,
+        "title": "Travel and Adventure",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gepr104.pdf",
+        "rawValue": "gepr1"
+      },
+      {
+        "num": 5,
+        "title": "Bravehearts",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gepr105.pdf",
+        "rawValue": "gepr1"
+      }
+    ]
+  },
+  {
+    "class": 7,
+    "subjectDisplay": "Ganita Prakash II",
+    "subjectDb": "Social Science",
+    "bookCode": "gegp2",
+    "subSubject": "Geography",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Geometric",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp201.pdf",
+        "rawValue": "gegp2"
+      },
+      {
+        "num": 3,
+        "title": "Finding Common",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp203.pdf",
+        "rawValue": "gegp2"
+      },
+      {
+        "num": 4,
+        "title": "Another Peek",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp204.pdf",
+        "rawValue": "gegp2"
+      },
+      {
+        "num": 5,
+        "title": "Connecting",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp205.pdf",
+        "rawValue": "gegp2"
+      },
+      {
+        "num": 6,
+        "title": "Constructions",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp206.pdf",
+        "rawValue": "gegp2"
+      },
+      {
+        "num": 7,
+        "title": "Finding the",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/gegp207.pdf",
+        "rawValue": "gegp2"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Mathematics",
+    "subjectDb": "Mathematics",
+    "bookCode": "hemh1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Rational Numbers",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh101.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 2,
+        "title": " ",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh102.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 3,
+        "title": "Understanding Quadrilaterals",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh103.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 4,
+        "title": " ",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh104.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 5,
+        "title": " ",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh105.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 6,
+        "title": " ",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh106.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 7,
+        "title": " ",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh107.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 8,
+        "title": "Algebraic Expressions and Identities",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh108.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 9,
+        "title": "Mensuration",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh109.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 10,
+        "title": " ",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh110.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 11,
+        "title": " ",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh111.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 12,
+        "title": "Factorisation",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh112.pdf",
+        "rawValue": "hemh1"
+      },
+      {
+        "num": 13,
+        "title": "Introduction to Graphs",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hemh113.pdf",
+        "rawValue": "hemh1"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Science",
+    "subjectDb": "Science",
+    "bookCode": "hesc1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Croprop Production Andand Managementanagement",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc101.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 2,
+        "title": "Mmicroorganisms : F: Friendriend Andand Ffoeoe",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc102.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 3,
+        "title": "Coaloal Andand Petroleum",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc103.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 4,
+        "title": "Combustion Andand Flamelame",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc104.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 5,
+        "title": "Conservation Ofof Plantslants Andand Animalsnimals",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc105.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 6,
+        "title": "Reproduction Inin Animalsnimals",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc106.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 7,
+        "title": "Reaching Thethe Agege Ofof Adolescencedolescence",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc107.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 8,
+        "title": "Forceorce Andand Presure",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc108.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 9,
+        "title": "Ffriction",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc109.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 10,
+        "title": "Ssoundound",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc110.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 11,
+        "title": "Chemical Efectsfects Ofof",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc111.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 12,
+        "title": "Someome Natural Phenomenahenomena",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc112.pdf",
+        "rawValue": "hesc1"
+      },
+      {
+        "num": 13,
+        "title": "Llightight",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hesc113.pdf",
+        "rawValue": "hesc1"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Honeydew",
+    "subjectDb": "Social Science",
+    "bookCode": "hehd1",
+    "subSubject": "History",
+    "chapters": []
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Our Past III",
+    "subjectDb": "Social Science",
+    "bookCode": "hess2",
+    "subSubject": "History",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Introduction",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess201.pdf",
+        "rawValue": "hess2"
+      },
+      {
+        "num": 3,
+        "title": "Ruling the Countryside",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess203.pdf",
+        "rawValue": "hess2"
+      },
+      {
+        "num": 4,
+        "title": "Tribals, Dikus and the",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess204.pdf",
+        "rawValue": "hess2"
+      },
+      {
+        "num": 5,
+        "title": "When People Revolt",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess205.pdf",
+        "rawValue": "hess2"
+      },
+      {
+        "num": 6,
+        "title": "Civilising the “Native”",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess206.pdf",
+        "rawValue": "hess2"
+      },
+      {
+        "num": 7,
+        "title": "Women, Caste and",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess207.pdf",
+        "rawValue": "hess2"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Social and Political Life",
+    "subjectDb": "Social Science",
+    "bookCode": "hess3",
+    "subSubject": "Geography",
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Understanding Secularism",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess302.pdf",
+        "rawValue": "hess3"
+      },
+      {
+        "num": 5,
+        "title": "Unit Four",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess305.pdf",
+        "rawValue": "hess3"
+      },
+      {
+        "num": 6,
+        "title": "Marginalisation",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess306.pdf",
+        "rawValue": "hess3"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Resourse and Developement (Geography)",
+    "subjectDb": "Social Science",
+    "bookCode": "hess4",
+    "subSubject": "Political Science",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Resources",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess401.pdf",
+        "rawValue": "hess4"
+      },
+      {
+        "num": 2,
+        "title": "Land, Soil, Water",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess402.pdf",
+        "rawValue": "hess4"
+      },
+      {
+        "num": 3,
+        "title": "Agriculture",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess403.pdf",
+        "rawValue": "hess4"
+      },
+      {
+        "num": 4,
+        "title": "Industries",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess404.pdf",
+        "rawValue": "hess4"
+      },
+      {
+        "num": 5,
+        "title": "Human Resources",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hess405.pdf",
+        "rawValue": "hess4"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Ganita Prakash",
+    "subjectDb": "Social Science",
+    "bookCode": "hegp1",
+    "subSubject": "Geography",
+    "chapters": [
+      {
+        "num": 2,
+        "title": "Power Play",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hegp102.pdf",
+        "rawValue": "hegp1"
+      },
+      {
+        "num": 4,
+        "title": "Quadrilaterals",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hegp104.pdf",
+        "rawValue": "hegp1"
+      },
+      {
+        "num": 5,
+        "title": "Number Play",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hegp105.pdf",
+        "rawValue": "hegp1"
+      },
+      {
+        "num": 7,
+        "title": "Proportional",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hegp107.pdf",
+        "rawValue": "hegp1"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Khel Yatra",
+    "subjectDb": "English",
+    "bookCode": "heky1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Foundations of Physical",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heky101.pdf",
+        "rawValue": "heky1"
+      },
+      {
+        "num": 2,
+        "title": "Physical and Motor Fitness",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heky102.pdf",
+        "rawValue": "heky1"
+      },
+      {
+        "num": 3,
+        "title": "Fundamental Skills of Sports",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heky103.pdf",
+        "rawValue": "heky1"
+      },
+      {
+        "num": 6,
+        "title": "Yoga",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heky106.pdf",
+        "rawValue": "heky1"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Kaushal Bodh",
+    "subjectDb": "English",
+    "bookCode": "hekb1",
+    "subSubject": null,
+    "chapters": []
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Kriti",
+    "subjectDb": "English",
+    "bookCode": "hekr1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 2,
+        "title": "One Stage",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hekr102.pdf",
+        "rawValue": "hekr1"
+      },
+      {
+        "num": 4,
+        "title": "Applause",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hekr104.pdf",
+        "rawValue": "hekr1"
+      },
+      {
+        "num": 6,
+        "title": "Musical",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hekr106.pdf",
+        "rawValue": "hekr1"
+      },
+      {
+        "num": 7,
+        "title": "Dhruva Mishra Jathi Jhampa Talam Alankaram",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hekr107.pdf",
+        "rawValue": "hekr1"
+      },
+      {
+        "num": 8,
+        "title": "Inspiration",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hekr108.pdf",
+        "rawValue": "hekr1"
+      },
+      {
+        "num": 9,
+        "title": "My World",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hekr109.pdf",
+        "rawValue": "hekr1"
+      },
+      {
+        "num": 11,
+        "title": "Bharatanatyam",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hekr111.pdf",
+        "rawValue": "hekr1"
+      },
+      {
+        "num": 12,
+        "title": "Dance for",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hekr112.pdf",
+        "rawValue": "hekr1"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "It So Happened",
+    "subjectDb": "English",
+    "bookCode": "heih1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "How the Camel got his hump",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heih101.pdf",
+        "rawValue": "heih1"
+      },
+      {
+        "num": 2,
+        "title": "Children at work",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heih102.pdf",
+        "rawValue": "heih1"
+      },
+      {
+        "num": 5,
+        "title": "Princess September",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heih105.pdf",
+        "rawValue": "heih1"
+      },
+      {
+        "num": 7,
+        "title": "Jalebis",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heih107.pdf",
+        "rawValue": "heih1"
+      },
+      {
+        "num": 8,
+        "title": "Ancient Education System of India",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/heih108.pdf",
+        "rawValue": "heih1"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Curiosity",
+    "subjectDb": "Science",
+    "bookCode": "hecu1",
+    "subSubject": null,
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Exploring the Investigative World of Science",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu101.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 3,
+        "title": "Health: The Ultimate Treasure",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu103.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 4,
+        "title": "Electricity: Magnetic and Heating Effects",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu104.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 5,
+        "title": "Exploring Forces",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu105.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 6,
+        "title": "Pressure, Winds, Storms, and Cyclones",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu106.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 7,
+        "title": "Particulate Nature of Matter",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu107.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 8,
+        "title": "Nature of Matter: Elements, Compounds, and Mixtures",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu108.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 10,
+        "title": "Light: Mirrors and Lenses",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu110.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 11,
+        "title": "Keeping Time with the Skies",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu111.pdf",
+        "rawValue": "hecu1"
+      },
+      {
+        "num": 12,
+        "title": "How Nature Works in Harmony",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hecu112.pdf",
+        "rawValue": "hecu1"
+      }
+    ]
+  },
+  {
+    "class": 8,
+    "subjectDisplay": "Poorvi",
+    "subjectDb": "Social Science",
+    "bookCode": "hepr1",
+    "subSubject": "History",
+    "chapters": [
+      {
+        "num": 1,
+        "title": "Wit and Wisdom",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hepr101.pdf",
+        "rawValue": "hepr1"
+      },
+      {
+        "num": 2,
+        "title": "Values and Dispositions",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hepr102.pdf",
+        "rawValue": "hepr1"
+      },
+      {
+        "num": 3,
+        "title": "Mystery and Magic",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hepr103.pdf",
+        "rawValue": "hepr1"
+      },
+      {
+        "num": 4,
+        "title": "Environment",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hepr104.pdf",
+        "rawValue": "hepr1"
+      },
+      {
+        "num": 5,
+        "title": "Science and Curiosity",
+        "pdfUrl": "https://ncert.nic.in/textbook/pdf/hepr105.pdf",
+        "rawValue": "hepr1"
+      }
+    ]
+  }
+]

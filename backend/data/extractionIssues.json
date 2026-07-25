@@ -1,0 +1,1509 @@
+[
+  {
+    "file": "class1_English_aemr1_ch02.json",
+    "class": 1,
+    "subject": "English",
+    "chapter": 2,
+    "title": "Greetings",
+    "wordCount": 1952,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_English_aemr1_ch06.json",
+    "class": 1,
+    "subject": "English",
+    "chapter": 6,
+    "title": "Food",
+    "wordCount": 933,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch01.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 1,
+    "title": "Finding the",
+    "wordCount": 947,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch02.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 2,
+    "title": "What is Long?",
+    "wordCount": 667,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch03.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 3,
+    "title": "Mango Treat",
+    "wordCount": 1054,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch04.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 4,
+    "title": "Making",
+    "wordCount": 1273,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch05.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 5,
+    "title": "How Many?",
+    "wordCount": 1478,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch06.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 6,
+    "title": "Vegetable Farm",
+    "wordCount": 720,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch07.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 7,
+    "title": "Lina’s Family",
+    "wordCount": 990,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch08.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 8,
+    "title": "Fun with Numbers",
+    "wordCount": 666,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class1_Mathematics_aejm1_ch13.json",
+    "class": 1,
+    "subject": "Mathematics",
+    "chapter": 13,
+    "title": "So Many Toys",
+    "wordCount": 848,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_English_bemr1_ch01.json",
+    "class": 2,
+    "subject": "English",
+    "chapter": 1,
+    "title": "Fun with Friends",
+    "wordCount": 600,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_English_bemr1_ch03.json",
+    "class": 2,
+    "subject": "English",
+    "chapter": 3,
+    "title": "Welcome to My World",
+    "wordCount": 567,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_English_bemr1_ch04.json",
+    "class": 2,
+    "subject": "English",
+    "chapter": 4,
+    "title": "Seeing without Seeing",
+    "wordCount": 959,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_English_bemr1_ch08.json",
+    "class": 2,
+    "subject": "English",
+    "chapter": 8,
+    "title": "Life Around Us",
+    "wordCount": 506,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_English_bemr1_ch09.json",
+    "class": 2,
+    "subject": "English",
+    "chapter": 9,
+    "title": "My Name",
+    "wordCount": 781,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_Mathematics_bejm1_ch02.json",
+    "class": 2,
+    "subject": "Mathematics",
+    "chapter": 2,
+    "title": "Shapes Around us",
+    "wordCount": 534,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_Mathematics_bejm1_ch03.json",
+    "class": 2,
+    "subject": "Mathematics",
+    "chapter": 3,
+    "title": "Fun with Numbers",
+    "wordCount": 1420,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_Mathematics_bejm1_ch07.json",
+    "class": 2,
+    "subject": "Mathematics",
+    "chapter": 7,
+    "title": "Rani’s Gift",
+    "wordCount": 1003,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_Mathematics_bejm1_ch08.json",
+    "class": 2,
+    "subject": "Mathematics",
+    "chapter": 8,
+    "title": "Grouping and",
+    "wordCount": 1472,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_Mathematics_bejm1_ch10.json",
+    "class": 2,
+    "subject": "Mathematics",
+    "chapter": 10,
+    "title": "Fun at the Fair",
+    "wordCount": 796,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class2_Mathematics_bejm1_ch11.json",
+    "class": 2,
+    "subject": "Mathematics",
+    "chapter": 11,
+    "title": "Data Handling",
+    "wordCount": 1207,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch02.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 2,
+    "title": "Going to the Mela",
+    "wordCount": 1221,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch03.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 3,
+    "title": "Celebrating",
+    "wordCount": 1136,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch04.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 4,
+    "title": "Getting to Know Plants • Have a display of animal",
+    "wordCount": 2173,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch05.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 5,
+    "title": "Plants and Animals",
+    "wordCount": 1197,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch06.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 6,
+    "title": "Living in Harmony",
+    "wordCount": 1503,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch07.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 7,
+    "title": "Water — A Precious Gift highlights",
+    "wordCount": 2357,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch08.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 8,
+    "title": "Food We Eat",
+    "wordCount": 1118,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch11.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 11,
+    "title": "Making Things",
+    "wordCount": 1285,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_EVS_ceev1_ch12.json",
+    "class": 3,
+    "subject": "EVS",
+    "chapter": 12,
+    "title": "Taking Charge of Waste",
+    "wordCount": 1769,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_English_ceky1_ch02.json",
+    "class": 3,
+    "subject": "English",
+    "chapter": 2,
+    "title": "Kicking and",
+    "wordCount": 1135,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_English_ceky1_ch03.json",
+    "class": 3,
+    "subject": "English",
+    "chapter": 3,
+    "title": "Strike the Ball",
+    "wordCount": 1199,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_English_ceky1_ch07.json",
+    "class": 3,
+    "subject": "English",
+    "chapter": 7,
+    "title": "Yogic Practices",
+    "wordCount": 7090,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch01.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 1,
+    "title": "What's in a",
+    "wordCount": 1123,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch02.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 2,
+    "title": "Toy Joy",
+    "wordCount": 843,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch03.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 3,
+    "title": "Double Century",
+    "wordCount": 1681,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch06.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 6,
+    "title": "House of",
+    "wordCount": 2284,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch08.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 8,
+    "title": "Fair Share",
+    "wordCount": 1143,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch10.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 10,
+    "title": "What are the various activities shown in the picture?",
+    "wordCount": 1360,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch11.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 11,
+    "title": "Filling and",
+    "wordCount": 1717,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch12.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 12,
+    "title": "Kishan had 364 saplings of different herbs and flowers. Then, he",
+    "wordCount": 1699,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class3_Mathematics_cemm1_ch14.json",
+    "class": 3,
+    "subject": "Mathematics",
+    "chapter": 14,
+    "title": "What do you see in the picture?",
+    "wordCount": 2030,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch02.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 2,
+    "title": "Who has got my ears?Who has got my ears?Who has got my ears?",
+    "wordCount": 1140,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch03.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 3,
+    "title": "Nandu Wakes UpNandu Wakes UpNandu Wakes Up",
+    "wordCount": 1292,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch05.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 5,
+    "title": "My name is Anita Khushwaha. I live in Bochaha village. This is",
+    "wordCount": 1606,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch06.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 6,
+    "title": "Omana’s Journey",
+    "wordCount": 681,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch08.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 8,
+    "title": "After our long train journey",
+    "wordCount": 1003,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch09.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 9,
+    "title": "Here are some pictures of families. These are the families of",
+    "wordCount": 1467,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch10.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 10,
+    "title": "Hu-tu-tu, Hu-tu-tu, Hu-tu-tu",
+    "wordCount": 1514,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch12.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 12,
+    "title": "My name is Chetandas. Many years ago I used to teach children",
+    "wordCount": 1727,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch14.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 14,
+    "title": "I am Basva. My father is a farmer. We live in Belvanika",
+    "wordCount": 821,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch15.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 15,
+    "title": "Day at night!Day at night!Day at night!",
+    "wordCount": 1159,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch16.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 16,
+    "title": "Balmandir",
+    "wordCount": 1923,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch17.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 17,
+    "title": "I came to Mumbai a month ago. Since we came, mother has",
+    "wordCount": 1561,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch18.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 18,
+    "title": "What to Drink?What to Drink?What to Drink?",
+    "wordCount": 2443,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch19.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 19,
+    "title": "Abdul in the GardenAbdul in the GardenAbdul in the Garden",
+    "wordCount": 1606,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch21.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 21,
+    "title": "Trring…! The doorbell rang. When Manpreet opened the",
+    "wordCount": 735,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch22.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 22,
+    "title": "Tug of WarTug of WarTug of War",
+    "wordCount": 1267,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch23.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 23,
+    "title": "Vani and Prasad live in a village called Mukhtapur. Their",
+    "wordCount": 800,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch24.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 24,
+    "title": "Today, there was a lot of activity at Maalu’s house. Chittappan",
+    "wordCount": 1134,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch25.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 25,
+    "title": "I can be powdered fine",
+    "wordCount": 817,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deap1_ch27.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 27,
+    "title": "Chuskit’s DreamChuskit’s DreamChuskit’s Dream",
+    "wordCount": 944,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deev1_ch02.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 2,
+    "title": "Exploring Our",
+    "wordCount": 2141,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deev1_ch04.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 4,
+    "title": "Growing up",
+    "wordCount": 1290,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deev1_ch06.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 6,
+    "title": "Happy and Healthy",
+    "wordCount": 1548,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deev1_ch08.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 8,
+    "title": "How Things are",
+    "wordCount": 1302,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_EVS_deev1_ch10.json",
+    "class": 4,
+    "subject": "EVS",
+    "chapter": 10,
+    "title": "Our Sky",
+    "wordCount": 1440,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_Mathematics_demm1_ch01.json",
+    "class": 4,
+    "subject": "Mathematics",
+    "chapter": 1,
+    "title": "Shapes Around Us",
+    "wordCount": 2632,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_Mathematics_demm1_ch02.json",
+    "class": 4,
+    "subject": "Mathematics",
+    "chapter": 2,
+    "title": "Look at the picture and answer",
+    "wordCount": 1142,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_Mathematics_demm1_ch05.json",
+    "class": 4,
+    "subject": "Mathematics",
+    "chapter": 5,
+    "title": "Sharing and",
+    "wordCount": 1996,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_Mathematics_demm1_ch06.json",
+    "class": 4,
+    "subject": "Mathematics",
+    "chapter": 6,
+    "title": "Look at the picture. What are the students measuring? Put a tick",
+    "wordCount": 1852,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_Mathematics_demm1_ch08.json",
+    "class": 4,
+    "subject": "Mathematics",
+    "chapter": 8,
+    "title": "Look at the pictures given and write",
+    "wordCount": 1628,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class4_Mathematics_demm1_ch14.json",
+    "class": 4,
+    "subject": "Mathematics",
+    "chapter": 14,
+    "title": "Data Handling",
+    "wordCount": 1385,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch01.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 1,
+    "title": "Super Senses",
+    "wordCount": 2681,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch04.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 4,
+    "title": "Mangoes Round the Year",
+    "wordCount": 1391,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch05.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 5,
+    "title": "Seeds and Seeds",
+    "wordCount": 1787,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch06.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 6,
+    "title": "Every Drop Counts",
+    "wordCount": 1973,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch07.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 7,
+    "title": "Experiments with Water",
+    "wordCount": 1563,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch09.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 9,
+    "title": "Up You Go!",
+    "wordCount": 2833,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch10.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 10,
+    "title": "Walls Tell",
+    "wordCount": 2564,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch11.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 11,
+    "title": "Sunita in Space",
+    "wordCount": 2847,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch12.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 12,
+    "title": "What if it Finishes...?",
+    "wordCount": 2327,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch14.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 14,
+    "title": "When the Earth Shook!",
+    "wordCount": 1681,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch15.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 15,
+    "title": "Blow Hot, Blow Cold",
+    "wordCount": 1978,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch16.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 16,
+    "title": "Who will do this Work?",
+    "wordCount": 1604,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch17.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 17,
+    "title": "Across the Wall",
+    "wordCount": 2648,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch18.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 18,
+    "title": "No Place for Us?",
+    "wordCount": 2340,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch20.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 20,
+    "title": "Whose Forests?",
+    "wordCount": 2528,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeap1_ch21.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 21,
+    "title": "Like Father",
+    "wordCount": 1985,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch01.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 1,
+    "title": "Water—The Essence of Life",
+    "wordCount": 2770,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch02.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 2,
+    "title": "Journey of a River",
+    "wordCount": 2453,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch03.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 3,
+    "title": "‘The Mystery of Food’ and Chapter",
+    "wordCount": 2576,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch04.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 4,
+    "title": "Our School — A Happy Place",
+    "wordCount": 2959,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch06.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 6,
+    "title": "Some Unique Places",
+    "wordCount": 2730,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch07.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 7,
+    "title": "Energy—How Things Work",
+    "wordCount": 3082,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch08.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 8,
+    "title": "Clothes — How Things are Made",
+    "wordCount": 2162,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch09.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 9,
+    "title": "Rhythms of Nature",
+    "wordCount": 2387,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_EVS_eeev1_ch10.json",
+    "class": 5,
+    "subject": "EVS",
+    "chapter": 10,
+    "title": "Earth — Our Shared Home",
+    "wordCount": 2818,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemh1_ch06.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 6,
+    "title": "Be My Multiple, I'll be Your Factor",
+    "wordCount": 1606,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemh1_ch09.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 9,
+    "title": "Boxes and Sketches",
+    "wordCount": 1052,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemh1_ch10.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 10,
+    "title": "Tenths and Hundredths",
+    "wordCount": 2003,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemh1_ch11.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 11,
+    "title": "Area and its Boundary",
+    "wordCount": 2060,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemh1_ch12.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 12,
+    "title": "Smart Charts",
+    "wordCount": 1448,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemh1_ch13.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 13,
+    "title": "Ways to Multiply and Divide",
+    "wordCount": 3076,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemh1_ch14.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 14,
+    "title": "How Big? How Heavy?",
+    "wordCount": 2911,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemm1_ch02.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 2,
+    "title": "Fractions",
+    "wordCount": 1725,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemm1_ch05.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 5,
+    "title": "Far and Near",
+    "wordCount": 2488,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemm1_ch08.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 8,
+    "title": "Iron Almirah – 40 g",
+    "wordCount": 3180,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemm1_ch11.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 11,
+    "title": "Grandmother’s",
+    "wordCount": 1491,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class5_Mathematics_eemm1_ch13.json",
+    "class": 5,
+    "subject": "Mathematics",
+    "chapter": 13,
+    "title": "Animal Jumps",
+    "wordCount": 1367,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class6_English_fekb1_ch05.json",
+    "class": 6,
+    "subject": "English",
+    "chapter": 5,
+    "title": "Biodiversity",
+    "wordCount": 3688,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class6_English_feky1_ch02.json",
+    "class": 6,
+    "subject": "English",
+    "chapter": 2,
+    "title": "Motor",
+    "wordCount": 3067,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class6_English_feky1_ch03.json",
+    "class": 6,
+    "subject": "English",
+    "chapter": 3,
+    "title": "Skills of",
+    "wordCount": 3479,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class6_Science_fecu1_ch09.json",
+    "class": 6,
+    "subject": "Science",
+    "chapter": 9,
+    "title": "Methods of Separation",
+    "wordCount": 4476,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class6_Social_Science_fekr1_ch02.json",
+    "class": 6,
+    "subject": "Social Science",
+    "chapter": 2,
+    "title": "Changing the Typical",
+    "wordCount": 1544,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class6_Social_Science_fekr1_ch03.json",
+    "class": 6,
+    "subject": "Social Science",
+    "chapter": 3,
+    "title": "Portraying People",
+    "wordCount": 862,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class6_Social_Science_fekr1_ch05.json",
+    "class": 6,
+    "subject": "Social Science",
+    "chapter": 5,
+    "title": "Seals to Prints",
+    "wordCount": 995,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class7_English_geah1_ch01.json",
+    "class": 7,
+    "subject": "English",
+    "chapter": 1,
+    "title": "Though so very small, the ant is unbelievably intelligent",
+    "wordCount": 1074,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class7_English_geky1_ch01.json",
+    "class": 7,
+    "subject": "English",
+    "chapter": 1,
+    "title": "Basis of Physical",
+    "wordCount": 2450,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class7_English_geky1_ch04.json",
+    "class": 7,
+    "subject": "English",
+    "chapter": 4,
+    "title": "Skills of Sports",
+    "wordCount": 4421,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_English_heky1_ch01.json",
+    "class": 8,
+    "subject": "English",
+    "chapter": 1,
+    "title": "Foundations of Physical",
+    "wordCount": 4081,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_English_heky1_ch02.json",
+    "class": 8,
+    "subject": "English",
+    "chapter": 2,
+    "title": "Physical and Motor Fitness",
+    "wordCount": 3069,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_English_heky1_ch03.json",
+    "class": 8,
+    "subject": "English",
+    "chapter": 3,
+    "title": "Fundamental Skills of Sports",
+    "wordCount": 4784,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_English_heky1_ch06.json",
+    "class": 8,
+    "subject": "English",
+    "chapter": 6,
+    "title": "Yoga",
+    "wordCount": 14528,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess2_ch01.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 1,
+    "title": "Introduction",
+    "wordCount": 3146,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess2_ch03.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 3,
+    "title": "Ruling the Countryside",
+    "wordCount": 4485,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess2_ch04.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 4,
+    "title": "Tribals, Dikus and the",
+    "wordCount": 4183,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess2_ch05.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 5,
+    "title": "When People Revolt",
+    "wordCount": 4936,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess2_ch06.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 6,
+    "title": "Civilising the “Native”",
+    "wordCount": 4268,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess2_ch07.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 7,
+    "title": "Women, Caste and",
+    "wordCount": 5440,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess3_ch05.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 5,
+    "title": "Unit Four",
+    "wordCount": 4724,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess4_ch01.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 1,
+    "title": "Resources",
+    "wordCount": 1794,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess4_ch02.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 2,
+    "title": "Land, Soil, Water",
+    "wordCount": 3969,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess4_ch03.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 3,
+    "title": "Agriculture",
+    "wordCount": 2667,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess4_ch04.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 4,
+    "title": "Industries",
+    "wordCount": 2859,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  },
+  {
+    "file": "class8_Social_Science_hess4_ch05.json",
+    "class": 8,
+    "subject": "Social Science",
+    "chapter": 5,
+    "title": "Human Resources",
+    "wordCount": 2331,
+    "issues": [
+      "Only 1 section despite long content"
+    ]
+  }
+]

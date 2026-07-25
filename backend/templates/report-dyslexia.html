@@ -1,0 +1,70 @@
+<div class="dyslexia-content">
+  <h1>Session Report: {{topicContext}}</h1>
+  
+  <h2>Overall Summary</h2>
+  <p>{{summary}}</p>
+  <p><strong>Overall Score:</strong> {{overall_score}} out of 1.0</p>
+
+  <h2>Your Skill Changes</h2>
+  <p>Here is how your skills changed during this session. A positive number means you improved.</p>
+  <div class="skill-blocks">
+    {{skillProgressionHTML}}
+  </div>
+
+  <h2>What You Did Well</h2>
+  <div class="strengths-list">
+    {{strengthsHTML}}
+  </div>
+
+  <h2>What To Work On Next</h2>
+  <div class="gaps-list">
+    {{gapsHTML}}
+  </div>
+
+  <h2>Your Next Steps</h2>
+  <div class="recommendations-list">
+    {{recommendationsHTML}}
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: #FFFEF7; /* Cream background */
+  }
+  .dyslexia-content {
+    font-family: 'Verdana', 'Arial', sans-serif;
+    font-size: 16px; /* Minimum 14px, using 16px for readability */
+    line-height: 1.5; /* 1.5x line spacing */
+    letter-spacing: 0.05em;
+    color: #333333; /* Dark gray, not pure black */
+    max-width: 65ch; /* Limit line length */
+    margin: 0 auto;
+    text-align: left; /* Left align only, no justification */
+    word-break: keep-all; /* Prevent hyphenation */
+  }
+  h1, h2 {
+    color: #1e293b;
+    margin-top: 2em; /* Extra whitespace */
+    margin-bottom: 1em;
+  }
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  p, .list-item { margin-bottom: 1.5em; }
+  
+  .skill-block {
+    background: #f1f5f9;
+    padding: 16px;
+    margin-bottom: 1em;
+    border-radius: 8px;
+  }
+  .skill-title { font-weight: bold; margin-bottom: 8px; display: block; }
+  .positive { color: #16a34a; font-weight: bold; }
+  .negative { color: #dc2626; font-weight: bold; }
+  
+  .list-item {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+</style>
