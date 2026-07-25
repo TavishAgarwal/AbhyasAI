@@ -13,9 +13,11 @@ async function apiKeyAuth(req, res, next) {
       if (!error && user) {
         req.user = user;
         return next();
+      } else {
+        console.error('Supabase Auth Error:', error);
       }
-    } catch (_) {
-      // Fall through to the generic authentication error below.
+    } catch (err) {
+      console.error('Supabase Auth Exception:', err);
     }
   }
 
