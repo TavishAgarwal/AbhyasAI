@@ -247,23 +247,6 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* Testimonial Section */}
-        <section id="stories" className="py-16 text-center max-w-4xl mx-auto mb-32">
-          <Quote className="w-12 h-12 mx-auto text-[#4f46e5]/30 mb-8" />
-          <h2 className="text-[24px] md:text-[32px] font-bold text-[#0b1c30] leading-tight mb-12">
-            "The clarity achieved through AbhyasAI is nothing short of crystalline. It stripped away the noise and rebuilt my cognitive endurance from the ground up."
-          </h2>
-          
-          <div className="flex items-center justify-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-white border border-white/60 shadow-sm flex items-center justify-center overflow-hidden">
-               <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="Dr. Elena Rostova" className="w-full h-full object-cover" />
-            </div>
-            <div className="text-left">
-              <div className="font-bold text-[#0b1c30] text-[16px]">Dr. Elena Rostova</div>
-              <div className="text-[#464555] text-[14px]">Lead AI Researcher</div>
-            </div>
-          </div>
-        </section>
 
         {/* Final CTA & WhatsApp Coming Soon */}
         <section className="glass-panel p-12 md:p-16 text-center max-w-4xl mx-auto mb-16 relative overflow-hidden">
