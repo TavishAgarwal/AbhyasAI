@@ -118,9 +118,8 @@ async function generatePdf(html, version) {
 </body>
 </html>`;
 
-  const puppeteer = require('puppeteer-core');
+  const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({
-    executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium',
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
   });
