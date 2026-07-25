@@ -7,13 +7,14 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../services/supabaseClient');
 const questionGenerator = require('../services/questionGenerator');
+const { validate } = require('../middleware/validate');
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // ============================================================
 // POST /api/questions/generate
 // ============================================================
-router.post('/generate', async (req, res) => {
+router.post('/generate', validate('questions.generate'), async (req, res) => {
   const startTime = Date.now();
 
   try {
@@ -247,6 +248,7 @@ router.get('/:topicOrRoleId', async (req, res) => {
       .from('topics_or_roles')
       .select('*')
       .eq('id', topicOrRoleId)
+      .eq('user_id', req.user.id)
       .single();
 
     if (topicError || !topicRow) {

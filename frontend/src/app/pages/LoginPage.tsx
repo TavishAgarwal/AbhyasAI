@@ -10,20 +10,6 @@ export function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleGuestLogin = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const { error } = await supabase.auth.signInWithPassword({ email: 'guest@abhyas.ai', password: 'GuestPassword123!' });
-      if (error) throw error;
-      navigate('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Guest login failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -104,18 +90,6 @@ export function LoginPage() {
           </Link>
         </p>
 
-        <div className="relative my-6 w-full">
-          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-200"/></div>
-          <div className="relative flex justify-center text-sm"><span className="bg-white px-4 text-slate-400">or</span></div>
-        </div>
-
-        <button
-          onClick={handleGuestLogin}
-          disabled={loading}
-          className="w-full py-3 rounded-xl border-2 border-dashed border-slate-300 text-slate-600 font-medium hover:border-[#4f46e5] hover:text-[#4f46e5] transition-all disabled:opacity-50"
-        >
-          Continue as Guest — Try the Demo
-        </button>
       </div>
     </div>
   );

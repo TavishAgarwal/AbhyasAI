@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const crypto = require('crypto');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 const { downloadMediaFromWhatsApp } = require('./whatsappService');
@@ -11,7 +12,7 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 
 let groq;
 function getGroq() {
-  return groq ||= new Groq({ apiKey: process.env.GROQ_API_KEY });
+  return groq ||= new Groq({ apiKey: process.env.GROQ_API_KEY, timeout: 60000 });
 }
 
 /**
@@ -40,9 +41,10 @@ async function downloadAndTranscribeAudio(mediaId, {
   const media = await downloadMedia(mediaId);
 
   // 2. Save temporarily as .ogg
-  const tmpOggPath = path.join(os.tmpdir(), `whatsapp_${mediaId}.ogg`);
-  const tmpMp3Path = path.join(os.tmpdir(), `whatsapp_${mediaId}.mp3`);
-  fs.writeFileSync(tmpOggPath, media.buffer);
+  const uuid = crypto.randomUUID();
+  const tmpOggPath = path.join(os.tmpdir(), `whatsapp_${mediaId}_${uuid}.ogg`);
+  const tmpMp3Path = path.join(os.tmpdir(), `whatsapp_${mediaId}_${uuid}.mp3`);
+  await fs.promises.writeFile(tmpOggPath, media.buffer);
 
   try {
     // 3. Convert .ogg → .mp3 via FFmpeg
@@ -60,8 +62,8 @@ async function downloadAndTranscribeAudio(mediaId, {
     return transcription.text;
   } finally {
     // 5. Cleanup both temp files
-    if (fs.existsSync(tmpOggPath)) fs.unlinkSync(tmpOggPath);
-    if (fs.existsSync(tmpMp3Path)) fs.unlinkSync(tmpMp3Path);
+    if (fs.existsSync(tmpOggPath)) await fs.promises.unlink(tmpOggPath);
+    if (fs.existsSync(tmpMp3Path)) await fs.promises.unlink(tmpMp3Path);
   }
 }
 

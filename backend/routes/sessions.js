@@ -10,13 +10,14 @@ const { supabase } = require('../services/supabaseClient');
 const { evaluate } = require('../services/answerEvaluator');
 const { updateRatings } = require('../services/eloRating');
 const { selectNextQuestion } = require('../services/questionSelector');
+const { validate } = require('../middleware/validate');
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // ============================================================
 // POST /api/sessions/start
 // ============================================================
-router.post('/start', async (req, res) => {
+router.post('/start', validate('sessions.start'), async (req, res) => {
   try {
     const { topicOrRoleId, questionCount, questionIds } = req.body;
 
@@ -60,6 +61,7 @@ router.post('/start', async (req, res) => {
       .insert({
         topic_or_role_id: topicOrRoleId,
         total_questions: Math.min(totalQuestionsToUse, questions.length),
+        user_id: req.user.id,
       })
       .select()
       .single();
@@ -142,7 +144,7 @@ router.post('/start', async (req, res) => {
 // ============================================================
 // POST /api/sessions/:id/answer
 // ============================================================
-router.post('/:id/answer', async (req, res) => {
+router.post('/:id/answer', validate('sessions.answer'), async (req, res) => {
   try {
     const sessionId = req.params.id;
     const { questionId, answerText } = req.body;
@@ -357,6 +359,7 @@ router.get('/:id', async (req, res) => {
       .from('sessions')
       .select('*, topics_or_roles(type, raw_input)')
       .eq('id', sessionId)
+      .eq('user_id', req.user.id)
       .single();
 
     if (sErr || !session) return res.status(404).json({ error: 'Session not found.' });

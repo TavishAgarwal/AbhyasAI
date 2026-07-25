@@ -4,8 +4,8 @@
 const axios = require('axios');
 
 const WHATSAPP_API_URL = 'https://graph.facebook.com/v19.0';
-const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID;
-const ACCESS_TOKEN = process.env.WHATSAPP_ACCESS_TOKEN;
+function getPhoneNumberId() { return process.env.WHATSAPP_PHONE_NUMBER_ID; }
+function getAccessToken() { return process.env.WHATSAPP_ACCESS_TOKEN; }
 
 // Mask phone numbers for logging — show first 2 + last 4 digits only
 function maskPhone(phone) {
@@ -22,7 +22,7 @@ function maskPhone(phone) {
 async function sendText(to, text) {
   try {
     await axios.post(
-      `${WHATSAPP_API_URL}/${PHONE_NUMBER_ID}/messages`,
+      `${WHATSAPP_API_URL}/${getPhoneNumberId()}/messages`,
       {
         messaging_product: 'whatsapp',
         to,
@@ -30,8 +30,9 @@ async function sendText(to, text) {
         text: { body: text }
       },
       {
+        timeout: 10000,
         headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
+          Authorization: `Bearer ${getAccessToken()}`,
           'Content-Type': 'application/json'
         }
       }
@@ -52,7 +53,7 @@ async function sendText(to, text) {
 async function sendDocument(to, documentUrl, filename, caption) {
   try {
     await axios.post(
-      `${WHATSAPP_API_URL}/${PHONE_NUMBER_ID}/messages`,
+      `${WHATSAPP_API_URL}/${getPhoneNumberId()}/messages`,
       {
         messaging_product: 'whatsapp',
         to,
@@ -64,8 +65,9 @@ async function sendDocument(to, documentUrl, filename, caption) {
         }
       },
       {
+        timeout: 15000,
         headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
+          Authorization: `Bearer ${getAccessToken()}`,
           'Content-Type': 'application/json'
         }
       }
@@ -89,7 +91,8 @@ async function downloadMediaFromWhatsApp(mediaId) {
   const mediaResponse = await axios.get(
     `${WHATSAPP_API_URL}/${mediaId}`,
     {
-      headers: { Authorization: `Bearer ${ACCESS_TOKEN}` }
+      timeout: 10000,
+      headers: { Authorization: `Bearer ${getAccessToken()}` }
     }
   );
 
@@ -98,8 +101,9 @@ async function downloadMediaFromWhatsApp(mediaId) {
 
   // Step 2: Download the binary content
   const downloadResponse = await axios.get(mediaUrl, {
+    timeout: 30000,
     responseType: 'arraybuffer',
-    headers: { Authorization: `Bearer ${ACCESS_TOKEN}` }
+    headers: { Authorization: `Bearer ${getAccessToken()}` }
   });
 
   return {

@@ -1,8 +1,6 @@
 // backend/services/documentGen.js
 // Generates PDF (via Puppeteer) and DOCX (via docx library) documents
 
-const puppeteer = require('puppeteer-core');
-const chromium = require('@sparticuz/chromium');
 const { Document, Packer, Paragraph, TextRun, AlignmentType } = require('docx');
 const sanitizeHtml = require('sanitize-html');
 
@@ -120,24 +118,12 @@ async function generatePdf(html, version) {
 </body>
 </html>`;
 
-  let browser;
-  const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
-  
-  if (isProd) {
-    const puppeteerCore = require('puppeteer-core');
-    browser = await puppeteerCore.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless
-    });
-  } else {
-    const puppeteerFull = require('puppeteer');
-    browser = await puppeteerFull.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
-  }
+  const puppeteer = require('puppeteer-core');
+  const browser = await puppeteer.launch({
+    executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium',
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+  });
 
   try {
     const page = await browser.newPage();

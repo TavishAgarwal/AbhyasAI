@@ -13,7 +13,19 @@ function getSupabase() {
     throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required when the database is used.');
   }
   client = createClient(supabaseUrl, supabaseServiceKey, {
-    auth: { autoRefreshToken: false, persistSession: false }
+    auth: { autoRefreshToken: false, persistSession: false },
+    global: {
+      fetch: async (url, options) => {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), 10000);
+        try {
+          const response = await fetch(url, { ...options, signal: controller.signal });
+          return response;
+        } finally {
+          clearTimeout(id);
+        }
+      }
+    }
   });
   return client;
 }

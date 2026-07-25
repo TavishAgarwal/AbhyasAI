@@ -1,26 +1,43 @@
 const { supabase } = require('./supabaseClient');
 const { sendText } = require('./whatsappService');
 const { downloadAndTranscribeAudio } = require('./audioService');
-const fetch = require('node-fetch'); // we will use the local API to interact with sessions
 
 // Local helper to hit our own API for sessions (simulates the frontend)
-const API_URL = process.env.WORKER_API_URL || 'http://localhost:3001';
-const API_KEY = process.env.API_SECRET_KEY || '';
+const API_URL = process.env.WORKER_API_URL;
+const API_KEY = process.env.API_SECRET_KEY;
+if ((!API_URL || !API_KEY) && process.env.NODE_ENV === 'production') {
+  console.error('❌ WORKER_API_URL and API_SECRET_KEY are required for the coaching worker.');
+  process.exit(1);
+}
 
-async function localApiCall(path, method, body) {
-  const res = await fetch(`${API_URL}${path}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': API_KEY,
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error || `API error ${res.status}`);
+async function localApiCall(path, method, body, retries = 2) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 60000);
+  try {
+    const res = await fetch(`${API_URL}${path}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': API_KEY,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `API error ${res.status}`);
+    }
+    return res.json();
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (retries > 0) {
+      console.warn(`API call to ${path} failed, retrying... (${retries} left)`);
+      await new Promise(r => setTimeout(r, 2000));
+      return localApiCall(path, method, body, retries - 1);
+    }
+    throw err;
   }
-  return res.json();
 }
 
 async function updateSession(phone, updates, database = supabase) {

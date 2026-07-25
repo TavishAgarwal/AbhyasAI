@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS topics_or_roles (
   type VARCHAR(20) NOT NULL CHECK (type IN ('topic', 'job_role')),
   raw_input TEXT NOT NULL,
   created_by UUID,
+  user_id UUID NOT NULL,
   created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -78,6 +79,8 @@ CREATE INDEX IF NOT EXISTS idx_topics_or_roles_type
   ON topics_or_roles(type);
 CREATE INDEX IF NOT EXISTS idx_topics_or_roles_created
   ON topics_or_roles(created_at);
+CREATE INDEX IF NOT EXISTS idx_topics_or_roles_user
+  ON topics_or_roles(user_id);
 
 -- ============================================================
 -- Table 5: skills
@@ -146,7 +149,8 @@ CREATE INDEX IF NOT EXISTS idx_qsm_skill
 -- ============================================================
 CREATE TABLE IF NOT EXISTS sessions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  topic_or_role_id UUID NOT NULL REFERENCES topics_or_roles(id),
+  topic_or_role_id UUID NOT NULL REFERENCES topics_or_roles(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL,
   status VARCHAR(20) DEFAULT 'active' CHECK (status IN ('active', 'completed', 'abandoned')),
   current_question_index INTEGER DEFAULT 0,
   total_questions INTEGER DEFAULT 10,
@@ -158,6 +162,8 @@ CREATE INDEX IF NOT EXISTS idx_sessions_topic
   ON sessions(topic_or_role_id);
 CREATE INDEX IF NOT EXISTS idx_sessions_status
   ON sessions(status);
+CREATE INDEX IF NOT EXISTS idx_sessions_user
+  ON sessions(user_id);
 
 -- ============================================================
 -- Table 9: skill_ratings
@@ -184,7 +190,7 @@ CREATE INDEX IF NOT EXISTS idx_skill_ratings_skill
 CREATE TABLE IF NOT EXISTS answers (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   session_id UUID NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
-  question_id UUID NOT NULL REFERENCES questions(id),
+  question_id UUID NOT NULL REFERENCES questions(id) ON DELETE CASCADE,
   answer_text TEXT NOT NULL,
   score FLOAT CHECK (score >= 0.0 AND score <= 1.0),
   evaluation JSONB DEFAULT '{}'::jsonb,
@@ -231,8 +237,25 @@ CREATE INDEX IF NOT EXISTS idx_whatsapp_sessions_last_message
   ON whatsapp_sessions(last_message_at);
 
 -- ============================================================
--- Storage: Create bucket for generated files
--- Run this in the Supabase dashboard or via API:
---   INSERT INTO storage.buckets (id, name, public)
---   VALUES ('generated-worksheets', 'generated-worksheets', false);
+-- Row Level Security
+-- The browser uses Supabase Auth only; application data is accessed through
+-- the Railway backend's service-role client, which bypasses these policies.
+-- This blocks direct anon/authenticated table access by default.
 -- ============================================================
+ALTER TABLE chapters ENABLE ROW LEVEL SECURITY;
+ALTER TABLE generation_jobs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE topics_or_roles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE skills ENABLE ROW LEVEL SECURITY;
+ALTER TABLE questions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE question_skill_map ENABLE ROW LEVEL SECURITY;
+ALTER TABLE sessions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE skill_ratings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE answers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reports ENABLE ROW LEVEL SECURITY;
+ALTER TABLE whatsapp_sessions ENABLE ROW LEVEL SECURITY;
+
+-- Create reports bucket
+INSERT INTO storage.buckets (id, name, public) VALUES ('reports', 'reports', false) ON CONFLICT (id) DO NOTHING;
+
+-- Policies for service role (optional as service role bypasses RLS, but good practice)
+-- No anon/authenticated access is needed since the backend downloads it using service role, or signs the URL.

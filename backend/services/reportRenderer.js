@@ -12,6 +12,16 @@ function getTemplate(format) {
   return fs.readFileSync(path.join(__dirname, '..', 'templates', 'report-standard.html'), 'utf8');
 }
 
+function escapeHtml(unsafe) {
+  if (!unsafe) return '';
+  return String(unsafe)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function formatDelta(delta) {
   if (delta > 0) return `<span class="positive">▲ +${delta}</span>`;
   if (delta < 0) return `<span class="negative">▼ ${delta}</span>`;
@@ -30,8 +40,8 @@ function renderSkillTable(skillProgression, format) {
   if (format === 'standard') {
     return skillProgression.map(s => `
       <tr>
-        <td>${s.skill_name}</td>
-        <td>${s.category}</td>
+        <td>${escapeHtml(s.skill_name)}</td>
+        <td>${escapeHtml(s.category)}</td>
         <td>${s.starting_rating}</td>
         <td>${s.ending_rating}</td>
         <td>${formatDelta(s.delta)}</td>
@@ -44,7 +54,7 @@ function renderSkillTable(skillProgression, format) {
       const direction = s.delta > 0 ? 'improved' : (s.delta < 0 ? 'dropped' : 'stayed the same');
       return `
       <div class="skill-block">
-        <span class="skill-title">${s.skill_name}</span>
+        <span class="skill-title">${escapeHtml(s.skill_name)}</span>
         Rating changed from ${s.starting_rating} to ${s.ending_rating}. 
         It ${direction} by ${formatDelta(s.delta)}.
       </div>
@@ -55,7 +65,7 @@ function renderSkillTable(skillProgression, format) {
   if (format === 'adhd') {
     return skillProgression.map(s => `
       <div class="skill-card">
-        <span class="name">${s.skill_name}</span>
+        <span class="name">${escapeHtml(s.skill_name)}</span>
         <div class="rating">${s.ending_rating}</div>
         <div class="delta ${s.delta >= 0 ? 'positive' : 'negative'}">${s.delta >= 0 ? '+' : ''}${s.delta}</div>
       </div>
@@ -67,11 +77,11 @@ function renderList(items, format, type) {
   if (!items || items.length === 0) return '';
 
   if (format === 'standard') {
-    return items.map(item => `<li>${item}</li>`).join('');
+    return items.map(item => `<li>${escapeHtml(item)}</li>`).join('');
   }
 
   if (format === 'dyslexia') {
-    return items.map(item => `<div class="list-item">${item}</div>`).join('');
+    return items.map(item => `<div class="list-item">${escapeHtml(item)}</div>`).join('');
   }
 
   if (format === 'adhd') {
@@ -79,7 +89,7 @@ function renderList(items, format, type) {
       return items.map(item => `
         <div class="card action">
           <div class="checkbox"></div>
-          <div>${item}</div>
+          <div>${escapeHtml(item)}</div>
         </div>
       `).join('');
     }
@@ -92,8 +102,8 @@ function renderList(items, format, type) {
       return `
         <div class="card ${type}">
           <details ${i === 0 ? 'open' : ''}>
-            <summary>${title}</summary>
-            <p>${item}</p>
+            <summary>${escapeHtml(title)}</summary>
+            <p>${escapeHtml(item)}</p>
           </details>
         </div>
       `;
@@ -116,12 +126,12 @@ function renderReport(reportJson, topicContext, format = 'standard') {
   const gapsHTML = renderList(reportJson.top_gaps, format, 'gap');
   const recommendationsHTML = renderList(reportJson.recommendations, format, 'action');
 
-  let summary = reportJson.summary || '';
+  let summary = escapeHtml(reportJson.summary || '');
   if (format === 'dyslexia') {
     summary = formatForDyslexia(summary);
   }
 
-  template = template.replace('{{topicContext}}', topicContext || 'Practice Session');
+  template = template.replace('{{topicContext}}', escapeHtml(topicContext || 'Practice Session'));
   template = template.replace('{{summary}}', summary);
   template = template.replace('{{overall_score}}', (reportJson.overall_score || 0).toFixed(2));
   template = template.replace('{{skillProgressionHTML}}', skillProgressionHTML);

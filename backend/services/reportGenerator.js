@@ -5,7 +5,7 @@ const OpenAI = require('openai');
 
 let openai;
 function getOpenAI() {
-  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 90 * 1000, maxRetries: 0 });
+  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 90 * 1000 });
 }
 
 const TOPIC_REPORT_SYSTEM_PROMPT = `You are an expert AI tutor generating an end-of-session Study Progress Report.
@@ -92,11 +92,13 @@ Schema:
  * @param {string} params.sessionType - 'topic' or 'job_role'
  * @returns {Promise<Object>} The parsed JSON report
  */
+const { sanitiseInput } = require('../utils/sanitiseInput');
+
 async function generateReport({ topicContext, answers, skillChanges, sessionType }) {
   // Build the user message
   const answerSummaries = answers.map((a, i) => `
 --- Q${i + 1}: ${a.questionText} ---
-Learner Answer: ${a.answer_text}
+Learner Answer: ${sanitiseInput(a.answer_text)}
 AI Score: ${a.score}
 Strengths identified: ${a.evaluation.strengths?.join(', ')}
 Gaps identified: ${a.evaluation.gaps?.join(', ')}
@@ -107,7 +109,7 @@ Gaps identified: ${a.evaluation.gaps?.join(', ')}
   ).join('\n');
 
   const userMessageContent = `
-Topic/Role: ${topicContext}
+Topic/Role: ${sanitiseInput(topicContext)}
 
 Skill Progression:
 ${skillSummaries}

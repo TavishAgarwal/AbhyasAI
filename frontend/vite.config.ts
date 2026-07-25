@@ -18,7 +18,7 @@ function figmaAssetResolver() {
 
 export default defineConfig({
   envDir: '../',
-  envPrefix: ['VITE_', 'SUPABASE_'],
+  envPrefix: 'VITE_',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if

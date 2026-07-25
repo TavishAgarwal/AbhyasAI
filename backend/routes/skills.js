@@ -7,11 +7,12 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../services/supabaseClient');
 const skillExtractor = require('../services/skillExtractor');
+const { validate } = require('../middleware/validate');
 
 // ============================================================
 // POST /api/skills/extract
 // ============================================================
-router.post('/extract', async (req, res) => {
+router.post('/extract', validate('skills.extract'), async (req, res) => {
   const startTime = Date.now();
 
   try {
@@ -35,7 +36,7 @@ router.post('/extract', async (req, res) => {
     // ── 1. Insert into topics_or_roles ──────────────────────
     const { data: topicRow, error: topicError } = await supabase
       .from('topics_or_roles')
-      .insert({ type, raw_input: trimmedInput })
+      .insert({ type, raw_input: trimmedInput, user_id: req.user.id })
       .select()
       .single();
 
@@ -189,6 +190,7 @@ router.get('/:topicOrRoleId', async (req, res) => {
       .from('topics_or_roles')
       .select('*')
       .eq('id', topicOrRoleId)
+      .eq('user_id', req.user.id)
       .single();
 
     if (topicError || !topicRow) {

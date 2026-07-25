@@ -10,7 +10,7 @@ AbhyasAI is an adaptive AI coaching engine. It conducts interactive conversation
 - **WhatsApp Integration**: Run practice sessions entirely through WhatsApp.
 
 ## Prerequisites
-- Node.js 18+
+- Node.js 20.x
 - Supabase project
 - Redis (for BullMQ)
 - OpenAI API Key (GPT-4o required)
@@ -51,6 +51,15 @@ npm test
 ```
 
 ## Deployment
-This project is configured for deployment with a `Procfile`.
-- `web`: The main Express server
-- `worker`: The BullMQ queue worker for WhatsApp processing.
+Deploy the repository root to Render using `render.yaml`; it builds and runs
+the Express server in `backend/` and verifies `GET /health`. Add a separate
+Render Background Worker with root directory `backend` and start command
+`node worker.js` if WhatsApp processing is enabled. Deploy the repository root
+to Vercel; the included `vercel.json` builds `frontend/` and rewrites SPA routes
+to `index.html`.
+
+Set the Vercel variables `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and
+`VITE_API_URL`. Set the remaining server-only variables from `.env.example` in
+Render, including `FRONTEND_URL` set to the exact Vercel origin. Run
+`database/schema.sql` in Supabase before first deploy. The current code does
+not use Supabase Storage, so no bucket needs to be created.

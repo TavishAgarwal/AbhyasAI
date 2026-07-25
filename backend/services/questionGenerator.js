@@ -7,7 +7,7 @@ const OpenAI = require('openai');
 
 let openai;
 function getOpenAI() {
-  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 90 * 1000, maxRetries: 0 });
+  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 90 * 1000 });
 }
 
 // Elo constants
@@ -96,6 +96,8 @@ Schema:
  * @param {string} params.type - 'topic' or 'role'
  * @returns {Promise<{ questions: Array }>}
  */
+const { sanitiseInput } = require('../utils/sanitiseInput');
+
 async function generate({ skills, count = 10, topicContext, type, previousScore, previousQuestions }) {
   if (!skills || !Array.isArray(skills) || skills.length === 0) {
     throw new Error('Skills array is required to generate questions.');
@@ -109,7 +111,7 @@ async function generate({ skills, count = 10, topicContext, type, previousScore,
 
   const systemPrompt = type === 'topic' ? TOPIC_SYSTEM_PROMPT : JOB_ROLE_SYSTEM_PROMPT;
 
-  let userPrompt = `Context: "${topicContext || 'General'}"
+  let userPrompt = `Context: "${sanitiseInput(topicContext || 'General')}"
 Number of questions to generate: ${count}
 Skills available to test:
 ${JSON.stringify(simplifiedSkills, null, 2)}

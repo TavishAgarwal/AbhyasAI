@@ -7,7 +7,7 @@ const OpenAI = require('openai');
 
 let openai;
 function getOpenAI() {
-  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 60 * 1000, maxRetries: 0 });
+  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 60 * 1000 });
 }
 
 // Prompt injection mitigation

@@ -24,13 +24,25 @@ const transcribeRoutes = require('./routes/transcribe');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Fail fast on missing critical env vars in production
+if (process.env.NODE_ENV === 'production') {
+  const required = ['FRONTEND_URL', 'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'OPENAI_API_KEY', 'API_SECRET_KEY', 'GROQ_API_KEY', 'WORKER_API_URL', 'REDIS_URL'];
+  const missing = required.filter(k => !process.env[k]);
+  if (missing.length > 0) {
+    console.error(`❌ Missing required env vars: ${missing.join(', ')}`);
+    process.exit(1);
+  }
+}
+
 // ============================================================
 // Middleware
 // ============================================================
 
 // CORS — allow only frontend origin
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.NODE_ENV === 'production'
+    ? (process.env.FRONTEND_URL ? process.env.FRONTEND_URL : false)
+    : (process.env.FRONTEND_URL || 'http://localhost:5173'),
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept-Language', 'x-api-key']
 }));
@@ -86,7 +98,8 @@ app.get('/health', async (req, res) => {
     
     res.status(200).json({ status: 'ok', db: 'ok', timestamp: new Date().toISOString() });
   } catch (err) {
-    res.status(503).json({ status: 'error', error: err.message });
+    console.error(`[${new Date().toISOString()}] Health check failed:`, err.message);
+    res.status(503).json({ status: 'error', db: 'unavailable' });
   }
 });
 
@@ -124,14 +137,19 @@ app.use((err, req, res, next) => {
 // Start Server
 // ============================================================
 if (require.main === module) {
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`[${new Date().toISOString()}] AbhyasAI backend running on port ${PORT}`);
 
     // Startup security checks
-    if (!process.env.API_SECRET_KEY) {
-      console.warn(`[${new Date().toISOString()}] ⚠️  SECURITY WARNING: API_SECRET_KEY is not set. API endpoints are unauthenticated. Set it in .env for production.`);
-    }
+  });
 
+  process.on('SIGTERM', () => {
+    console.log('[SIGTERM] Graceful shutdown started');
+    server.close(() => {
+      console.log('[SIGTERM] Server closed');
+      process.exit(0);
+    });
+    setTimeout(() => process.exit(1), 10000); // Force after 10s
   });
 }
 

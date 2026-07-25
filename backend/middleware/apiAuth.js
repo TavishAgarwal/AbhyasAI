@@ -1,38 +1,37 @@
 // backend/middleware/apiAuth.js
-// Simple API key authentication for public-facing routes
-// Prevents unauthenticated callers from burning OpenAI credits
+// Require a Supabase user session for public routes. The optional API key is
+// reserved for the internal BullMQ worker and is never shipped to the browser.
 
 const API_KEY_HEADER = 'x-api-key';
+const { getSupabase } = require('../services/supabaseClient');
 
-function apiKeyAuth(req, res, next) {
-  const configuredKey = process.env.API_SECRET_KEY;
-
-  // If no API key is configured, allow requests (dev mode) but log warning
-  if (!configuredKey) {
-    return next();
+async function apiKeyAuth(req, res, next) {
+  const authorization = req.headers.authorization;
+  if (authorization?.startsWith('Bearer ')) {
+    try {
+      const { data: { user }, error } = await getSupabase().auth.getUser(authorization.slice(7));
+      if (!error && user) {
+        req.user = user;
+        return next();
+      }
+    } catch (_) {
+      // Fall through to the generic authentication error below.
+    }
   }
 
+  const configuredKey = process.env.API_SECRET_KEY;
   const providedKey = req.headers[API_KEY_HEADER];
 
-  if (!providedKey) {
-    return res.status(401).json({
-      error: 'Authentication required. Provide an API key via the x-api-key header.'
-    });
+  if (configuredKey && providedKey && providedKey.length === configuredKey.length) {
+    const crypto = require('crypto');
+    if (crypto.timingSafeEqual(Buffer.from(providedKey), Buffer.from(configuredKey))) {
+      // Set a synthetic zero-UUID user so downstream endpoints don't crash
+      req.user = { id: '00000000-0000-0000-0000-000000000000' };
+      return next();
+    }
   }
 
-  // Constant-time comparison to prevent timing attacks
-  if (providedKey.length !== configuredKey.length) {
-    return res.status(403).json({ error: 'Invalid API key.' });
-  }
-
-  const crypto = require('crypto');
-  const a = Buffer.from(providedKey);
-  const b = Buffer.from(configuredKey);
-  if (!crypto.timingSafeEqual(a, b)) {
-    return res.status(403).json({ error: 'Invalid API key.' });
-  }
-
-  next();
+  return res.status(401).json({ error: 'Authentication required.' });
 }
 
 module.exports = { apiKeyAuth };

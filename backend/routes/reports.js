@@ -10,13 +10,15 @@ const { generateReport } = require('../services/reportGenerator');
 const { renderReport } = require('../services/reportRenderer');
 const { generatePdf } = require('../services/documentGen');
 const { generateReportDocx } = require('../services/docxGenerator');
+const { validate } = require('../middleware/validate');
+const { enqueueDocumentGeneration, docGenQueue } = require('../services/queue');
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // ============================================================
 // POST /api/reports/generate
 // ============================================================
-router.post('/generate', async (req, res) => {
+router.post('/generate', validate('reports.generate'), async (req, res) => {
   const startTime = Date.now();
   
   try {
@@ -31,6 +33,7 @@ router.post('/generate', async (req, res) => {
       .from('sessions')
       .select('*, topics_or_roles(raw_input, type)')
       .eq('id', sessionId)
+      .eq('user_id', req.user.id)
       .single();
 
     if (sErr || !session) {
@@ -195,8 +198,9 @@ router.get('/session/:sessionId', async (req, res) => {
 
     const { data: report, error } = await supabase
       .from('reports')
-      .select('report_json, created_at')
+      .select('report_json, created_at, sessions!inner(user_id)')
       .eq('session_id', sessionId)
+      .eq('sessions.user_id', req.user.id)
       .single();
       
     if (error || !report) {
@@ -233,8 +237,9 @@ router.get('/session/:sessionId/render', async (req, res) => {
 
     const { data: report, error } = await supabase
       .from('reports')
-      .select('report_json, sessions(topics_or_roles(raw_input))')
+      .select('report_json, sessions!inner(user_id, topics_or_roles(raw_input))')
       .eq('session_id', sessionId)
+      .eq('sessions.user_id', req.user.id)
       .single();
       
     if (error || !report) {
@@ -254,9 +259,9 @@ router.get('/session/:sessionId/render', async (req, res) => {
 });
 
 // ============================================================
-// GET /api/reports/session/:sessionId/pdf
+// POST /api/reports/session/:sessionId/pdf
 // ============================================================
-router.get('/session/:sessionId/pdf', async (req, res) => {
+router.post('/session/:sessionId/pdf', async (req, res) => {
   try {
     const { sessionId } = req.params;
     const format = req.query.format || 'standard';
@@ -269,35 +274,33 @@ router.get('/session/:sessionId/pdf', async (req, res) => {
       return res.status(400).json({ error: 'Invalid sessionId format.' });
     }
 
-    const { data: report, error } = await supabase
-      .from('reports')
-      .select('report_json, sessions(topics_or_roles(raw_input))')
-      .eq('session_id', sessionId)
-      .single();
-      
-    if (error || !report) {
-      return res.status(404).send('Report not found for this session.');
-    }
+    // Check if the file already exists in Storage
+    const filePath = `${sessionId}/${format}.pdf`;
+    const { data: fileData, error: fileError } = await supabase.storage.from('reports').createSignedUrl(filePath, 3600);
     
-    const topicContext = report.sessions?.topics_or_roles?.raw_input || 'Practice Session';
-    const html = renderReport(report.report_json, topicContext, format);
+    // If it exists, return it immediately (checking error isn't enough, we must check if we actually got a URL for an existing object. But createSignedUrl usually returns a URL even if it doesn't exist, we need to try downloading it or stat it. Let's just create a job for now, or check via list.)
+    // Actually, generating it again takes time. Let's just always generate it for now, or check storage if it's there.
+    // For simplicity, let's always queue it and let it overwrite.
     
-    const pdfBuffer = await generatePdf(html, format);
+    const jobId = await enqueueDocumentGeneration({
+      sessionId,
+      format,
+      docType: 'pdf',
+      userId: req.user.id
+    });
     
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="AbhyasAI-Report-${format}.pdf"`);
-    return res.status(200).send(pdfBuffer);
+    return res.status(202).json({ status: 'processing', jobId });
     
   } catch (err) {
-    console.error(`Error generating report PDF:`, err);
-    return res.status(500).send('Something went wrong generating the PDF.');
+    console.error(`Error queuing report PDF:`, err);
+    return res.status(500).json({ error: 'Something went wrong queuing the PDF generation.' });
   }
 });
 
 // ============================================================
-// GET /api/reports/session/:sessionId/docx
+// POST /api/reports/session/:sessionId/docx
 // ============================================================
-router.get('/session/:sessionId/docx', async (req, res) => {
+router.post('/session/:sessionId/docx', async (req, res) => {
   try {
     const { sessionId } = req.params;
     const format = req.query.format || 'standard';
@@ -310,26 +313,58 @@ router.get('/session/:sessionId/docx', async (req, res) => {
       return res.status(400).json({ error: 'Invalid sessionId format.' });
     }
 
-    const { data: report, error } = await supabase
-      .from('reports')
-      .select('report_json, sessions(topics_or_roles(raw_input))')
-      .eq('session_id', sessionId)
-      .single();
-      
-    if (error || !report) {
-      return res.status(404).send('Report not found for this session.');
-    }
+    const jobId = await enqueueDocumentGeneration({
+      sessionId,
+      format,
+      docType: 'docx',
+      userId: req.user.id
+    });
     
-    const topicContext = report.sessions?.topics_or_roles?.raw_input || 'Practice Session';
-    const docxBuffer = await generateReportDocx(report.report_json, topicContext, format);
-    
-    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-    res.setHeader('Content-Disposition', `attachment; filename="AbhyasAI-Report-${format}.docx"`);
-    return res.status(200).send(docxBuffer);
+    return res.status(202).json({ status: 'processing', jobId });
     
   } catch (err) {
-    console.error(`Error generating report DOCX:`, err);
-    return res.status(500).send('Something went wrong generating the DOCX.');
+    console.error(`Error queuing report DOCX:`, err);
+    return res.status(500).json({ error: 'Something went wrong queuing the DOCX generation.' });
+  }
+});
+
+// ============================================================
+// GET /api/reports/job/:jobId
+// ============================================================
+router.get('/job/:jobId', async (req, res) => {
+  try {
+    const { jobId } = req.params;
+    if (!docGenQueue) {
+      return res.status(503).json({ error: 'Queue is not available.' });
+    }
+    
+    const job = await docGenQueue.getJob(jobId);
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found.' });
+    }
+    
+    const state = await job.getState();
+    if (state === 'completed') {
+      const result = job.returnvalue;
+      if (!result || !result.filePath) {
+        return res.status(500).json({ error: 'Job completed but no file path returned.' });
+      }
+      
+      const { data, error } = await supabase.storage.from('reports').createSignedUrl(result.filePath, 3600);
+      if (error || !data) {
+        return res.status(500).json({ error: 'Failed to generate signed URL for document.' });
+      }
+      
+      return res.status(200).json({ status: 'done', url: data.signedUrl });
+    } else if (state === 'failed') {
+      return res.status(200).json({ status: 'failed', error: job.failedReason });
+    } else {
+      return res.status(200).json({ status: 'processing' });
+    }
+    
+  } catch (err) {
+    console.error(`Error checking job status:`, err);
+    return res.status(500).json({ error: 'Something went wrong.' });
   }
 });
 

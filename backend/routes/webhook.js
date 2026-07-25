@@ -22,14 +22,19 @@ router.get('/whatsapp', (req, res) => {
 // ============================================================
 router.post('/whatsapp', async (req, res) => {
   // Verify webhook signature (Fix 1 — CRITICAL)
-  if (process.env.WHATSAPP_APP_SECRET) {
+  const appSecret = process.env.WHATSAPP_APP_SECRET;
+  if (!appSecret) {
+    console.error('[SECURITY] WHATSAPP_APP_SECRET not configured — rejecting all webhook POSTs');
+    return res.sendStatus(503);
+  }
+  {
     const signature = req.headers['x-hub-signature-256'];
     if (!signature) {
       console.warn(`[${new Date().toISOString()}] Webhook received without signature`);
       return res.sendStatus(401);
     }
     const expectedSig = 'sha256=' + crypto
-      .createHmac('sha256', process.env.WHATSAPP_APP_SECRET)
+      .createHmac('sha256', appSecret)
       .update(req.rawBody || JSON.stringify(req.body))
       .digest('hex');
     const sigBuffer = Buffer.from(signature);

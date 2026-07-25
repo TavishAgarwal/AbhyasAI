@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { getSession, generateReport, getReportHTML, getReportPdfUrl, getReportDocxUrl, generateQuestions, startSession } from '../../lib/api';
+import { getSession, generateReport, getReportHTML, downloadReport, generateQuestions, startSession } from '../../lib/api';
 import { Download, RefreshCcw, Loader2, FileText, ChevronDown, ChevronUp, BookOpen, BarChart3, CheckCircle2, AlertCircle } from 'lucide-react';
 import { ErrorState } from '../components/states/ErrorState';
 import { LoadingState } from '../components/states/LoadingState';
+import DOMPurify from 'dompurify';
 
 export function SessionReportPage() {
   const { sessionId } = useParams<{ sessionId: string }>();
@@ -18,6 +19,8 @@ export function SessionReportPage() {
   const [summaryLoading, setSummaryLoading] = useState(false);
   const [reportFormat, setReportFormat] = useState<'standard' | 'dyslexia' | 'adhd'>('standard');
   const [reportHTML, setReportHTML] = useState('');
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
+  const [isDownloadingDocx, setIsDownloadingDocx] = useState(false);
 
   // Phase 4: Retry Session
   const [retryLoading, setRetryLoading] = useState(false);
@@ -278,20 +281,44 @@ export function SessionReportPage() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <a 
-                href={getReportPdfUrl(sessionId, reportFormat)}
-                download
-                className="w-full px-4 py-3.5 bg-[#0b1c30] text-white text-center rounded-xl font-bold hover:bg-[#1a2b42] transition-colors flex items-center justify-center gap-2"
+              <button
+                type="button"
+                disabled={isDownloadingPdf}
+                onClick={async () => {
+                  if (!sessionId) return;
+                  setIsDownloadingPdf(true);
+                  try {
+                    await downloadReport(sessionId, reportFormat, 'pdf');
+                  } catch (err: any) {
+                    setError(err.message);
+                  } finally {
+                    setIsDownloadingPdf(false);
+                  }
+                }}
+                className="w-full px-4 py-3.5 bg-[#0b1c30] text-white text-center rounded-xl font-bold hover:bg-[#1a2b42] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
-                <Download className="w-5 h-5" /> Download Report PDF
-              </a>
-              <a 
-                href={getReportDocxUrl(sessionId, reportFormat)}
-                download
-                className="w-full px-4 py-3.5 bg-white text-[#0b1c30] border-2 border-[#0b1c30] text-center rounded-xl font-bold hover:bg-slate-50 transition-colors flex items-center justify-center gap-2"
+                {isDownloadingPdf ? <Loader2 className="w-5 h-5 animate-spin" /> : <Download className="w-5 h-5" />}
+                {isDownloadingPdf ? 'Generating PDF...' : 'Download Report PDF'}
+              </button>
+              <button
+                type="button"
+                disabled={isDownloadingDocx}
+                onClick={async () => {
+                  if (!sessionId) return;
+                  setIsDownloadingDocx(true);
+                  try {
+                    await downloadReport(sessionId, reportFormat, 'docx');
+                  } catch (err: any) {
+                    setError(err.message);
+                  } finally {
+                    setIsDownloadingDocx(false);
+                  }
+                }}
+                className="w-full px-4 py-3.5 bg-white text-[#0b1c30] border-2 border-[#0b1c30] text-center rounded-xl font-bold hover:bg-slate-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
-                <FileText className="w-5 h-5" /> Download Report DOCX
-              </a>
+                {isDownloadingDocx ? <Loader2 className="w-5 h-5 animate-spin" /> : <FileText className="w-5 h-5" />}
+                {isDownloadingDocx ? 'Generating DOCX...' : 'Download Report DOCX'}
+              </button>
             </div>
           </div>
           
@@ -309,7 +336,7 @@ export function SessionReportPage() {
               ) : null}
               <div 
                 className="prose prose-slate max-w-none w-full"
-                dangerouslySetInnerHTML={{ __html: reportHTML }} 
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(reportHTML) }} 
               />
             </div>
           </div>

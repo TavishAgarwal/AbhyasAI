@@ -8,6 +8,7 @@ router.get('/sessions', async (req, res) => {
     const { data: sessions, error } = await supabase
       .from('sessions')
       .select('id, topics_or_roles(raw_input), created_at, answers(score)')
+      .eq('user_id', req.user.id)
       .order('created_at', { ascending: false })
       .limit(10);
       
@@ -29,7 +30,8 @@ router.get('/sessions', async (req, res) => {
     
     res.json(formatted);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(`[GET /api/dashboard/sessions] ${err.message}`);
+    res.status(500).json({ error: 'Unable to load dashboard sessions.' });
   }
 });
 
@@ -38,13 +40,16 @@ router.get('/stats', async (req, res) => {
   try {
     const { data: sessions, error: sErr } = await supabase
       .from('sessions')
-      .select('id, created_at, answers(score)');
+      .select('id, created_at, answers(score)')
+      .eq('user_id', req.user.id);
       
     if (sErr) throw sErr;
     
+    const sessionIds = (sessions || []).map(s => s.id);
     const { data: skills, error: skErr } = await supabase
       .from('skill_ratings')
-      .select('rating, skills(name)');
+      .select('rating, skills(name)')
+      .in('session_id', sessionIds);
       
     if (skErr) throw skErr;
     
@@ -138,7 +143,8 @@ router.get('/stats', async (req, res) => {
       activeStreak
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(`[GET /api/dashboard/stats] ${err.message}`);
+    res.status(500).json({ error: 'Unable to load dashboard statistics.' });
   }
 });
 

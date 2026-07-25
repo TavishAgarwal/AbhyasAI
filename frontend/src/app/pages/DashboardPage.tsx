@@ -7,11 +7,13 @@ import {
 } from 'recharts';
 import { Brain, Activity, Target, Plus, ChevronRight, Clock, Award } from 'lucide-react';
 import { LoadingState } from '../components/states/LoadingState';
+import { ErrorState } from '../components/states/ErrorState';
 
 export function DashboardPage() {
   const [stats, setStats] = useState<any>(null);
   const [sessions, setSessions] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadDashboard = async () => {
@@ -22,8 +24,9 @@ export function DashboardPage() {
         ]);
         setStats(statsData);
         setSessions(sessionsData);
-      } catch (err) {
+      } catch (err: any) {
         console.error(err);
+        setError(err.message || 'Failed to load dashboard data');
       } finally {
         setLoading(false);
       }
@@ -33,6 +36,10 @@ export function DashboardPage() {
 
   if (loading) {
     return <LoadingState fullScreen message="Loading your cognitive profile..." />;
+  }
+
+  if (error) {
+    return <ErrorState message={error} onRetry={() => window.location.reload()} />;
   }
 
   return (
