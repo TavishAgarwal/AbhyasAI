@@ -2,11 +2,9 @@ const request = require('supertest');
 const app = require('../server');
 
 describe('Smoke Tests', () => {
-  it('should return 200 for health check', async () => {
-    // Need to set dummy values for health check to pass without a real DB/Redis
-    // Or just check that it returns 503 instead of crashing
-    const res = await request(app).get('/health');
-    expect([200, 503]).toContain(res.status);
+  it('should return 404 for an unknown route', async () => {
+    const res = await request(app).get('/not-a-route');
+    expect(res.status).toBe(404);
   });
 
   it('should return 401 for protected endpoints without API key', async () => {

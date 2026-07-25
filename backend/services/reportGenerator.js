@@ -3,11 +3,10 @@
 
 const OpenAI = require('openai');
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  timeout: 90 * 1000,
-  maxRetries: 0,
-});
+let openai;
+function getOpenAI() {
+  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 90 * 1000, maxRetries: 0 });
+}
 
 const TOPIC_REPORT_SYSTEM_PROMPT = `You are an expert AI tutor generating an end-of-session Study Progress Report.
 You will be provided with:
@@ -125,7 +124,7 @@ ${answerSummaries}
   ];
 
   const callLLM = async () => {
-    const response = await openai.chat.completions.create({
+    const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o-mini',
       temperature: 0.3, // Slightly higher for synthesis
       max_tokens: 1500,

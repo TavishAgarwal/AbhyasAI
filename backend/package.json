@@ -6,13 +6,6 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "seed": "node scripts/seedChapters.js",
-    "download-ncert": "node scripts/downloadAndSeed.js",
-    "scrape-ncert": "node scripts/scrapeNcert.js",
-    "verify-urls": "node scripts/verifyPdfUrls.js",
-    "extract-ncert": "node scripts/extractNcertText.js",
-    "check-extraction": "node scripts/checkExtraction.js",
-    "seed-all": "node scripts/seedAllNcertChapters.js",
     "test": "vitest run --globals"
   },
   "engines": {

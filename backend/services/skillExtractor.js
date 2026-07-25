@@ -1,17 +1,16 @@
 // backend/services/skillExtractor.js
 // AbhyasAI — Extracts a structured skill matrix from a topic or job description.
-// Follows the same patterns as promptChain.js: GPT-4o-mini, retry-once,
+// Uses GPT-4o-mini with retry-once,
 // prompt-injection sanitisation, JSON-fence stripping.
 
 const OpenAI = require('openai');
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  timeout: 60 * 1000,
-  maxRetries: 0, // We handle retries manually
-});
+let openai;
+function getOpenAI() {
+  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 60 * 1000, maxRetries: 0 });
+}
 
-// Prompt injection mitigation (same pattern as promptChain.js)
+// Prompt injection mitigation
 const DELIMITER_START = '=== USER INPUT START ===';
 const DELIMITER_END = '=== USER INPUT END ===';
 
@@ -97,7 +96,7 @@ async function extract({ rawInput, type }) {
   ];
 
   const callLLM = async () => {
-    const response = await openai.chat.completions.create({
+    const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o-mini',
       temperature: 0.2,
       max_tokens: 2000,
@@ -117,7 +116,7 @@ async function extract({ rawInput, type }) {
   try {
     return await callLLM();
   } catch (error) {
-    // Retry once after 2 seconds (same pattern as promptChain.js)
+    // Retry once after 2 seconds.
     await new Promise((resolve) => setTimeout(resolve, 2000));
     try {
       return await callLLM();

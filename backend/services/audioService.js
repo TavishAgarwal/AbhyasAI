@@ -9,9 +9,10 @@ const Groq = require('groq-sdk');
 // Point fluent-ffmpeg at the bundled binary
 ffmpeg.setFfmpegPath(ffmpegPath);
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY
-});
+let groq;
+function getGroq() {
+  return groq ||= new Groq({ apiKey: process.env.GROQ_API_KEY });
+}
 
 /**
  * Converts .ogg (Opus codec, from WhatsApp voice notes) to .mp3 via FFmpeg.
@@ -29,9 +30,14 @@ function convertOggToMp3(inputPath, outputPath) {
   });
 }
 
-async function downloadAndTranscribeAudio(mediaId) {
+async function downloadAndTranscribeAudio(mediaId, {
+  downloadMedia = downloadMediaFromWhatsApp,
+  convert = convertOggToMp3,
+  client = getGroq(),
+  fileFactory = fs.createReadStream
+} = {}) {
   // 1. Download from WhatsApp
-  const media = await downloadMediaFromWhatsApp(mediaId);
+  const media = await downloadMedia(mediaId);
 
   // 2. Save temporarily as .ogg
   const tmpOggPath = path.join(os.tmpdir(), `whatsapp_${mediaId}.ogg`);
@@ -40,11 +46,11 @@ async function downloadAndTranscribeAudio(mediaId) {
 
   try {
     // 3. Convert .ogg → .mp3 via FFmpeg
-    await convertOggToMp3(tmpOggPath, tmpMp3Path);
+    await convert(tmpOggPath, tmpMp3Path);
 
     // 4. Transcribe .mp3 with Groq Whisper
-    const transcription = await groq.audio.transcriptions.create({
-      file: fs.createReadStream(tmpMp3Path),
+    const transcription = await client.audio.transcriptions.create({
+      file: fileFactory(tmpMp3Path),
       model: 'whisper-large-v3-turbo',
       prompt: 'Student answering an interview or practice question.',
       response_format: 'json',
@@ -59,4 +65,4 @@ async function downloadAndTranscribeAudio(mediaId) {
   }
 }
 
-module.exports = { downloadAndTranscribeAudio };
+module.exports = { downloadAndTranscribeAudio, getGroq };

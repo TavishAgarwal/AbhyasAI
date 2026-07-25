@@ -3,23 +3,65 @@
 
 const OpenAI = require('openai');
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  timeout: 60 * 1000,
-  maxRetries: 0, // Manual retry
-});
+let openai;
+function getOpenAI() {
+  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 60 * 1000, maxRetries: 0 });
+}
 
 // Prompt injection mitigation
 const DELIMITER_START = '=== USER ANSWER START ===';
 const DELIMITER_END = '=== USER ANSWER END ===';
+const MAX_ANSWER_CHARS = 12_000;
 
 function sanitiseInput(text) {
-  return text
+  return String(text || '').normalize('NFKC')
     .replace(/=== USER ANSWER START ===/g, '')
     .replace(/=== USER ANSWER END ===/g, '')
     .replace(/ignore (all |previous |the )?instructions?/gi, '[REDACTED]')
     .replace(/system prompt/gi, '[REDACTED]')
     .trim();
+}
+
+function prepareAnswer(text) {
+  const normalised = String(text || '').normalize('NFKC');
+  if (normalised.includes(DELIMITER_START) || normalised.includes(DELIMITER_END)) {
+    throw new Error('Answer contains reserved delimiters.');
+  }
+
+  const truncated = normalised.length > MAX_ANSWER_CHARS;
+  const answer = sanitiseInput(normalised.slice(0, MAX_ANSWER_CHARS));
+  const delimiterLike = /={3,}.*(?:user\s+answer|answer\s+(?:start|end)).*={3,}/i.test(normalised);
+  const instructionTerms = normalised.match(/\b(?:ignore|disregard|override|reveal|expose|print|output|follow)\b/gi) || [];
+  const protectedTerms = normalised.match(/\b(?:instructions?|prompts?|systems?|polic(?:y|ies)|delimiters?)\b/gi) || [];
+  const words = normalised.match(/\b[\p{L}\p{N}_'-]+\b/gu) || [];
+  const instructionHeavy = words.length > 0 && (instructionTerms.length + protectedTerms.length) / words.length > 0.2;
+
+  if (delimiterLike || (instructionTerms.length && protectedTerms.length) || instructionHeavy) {
+    throw new Error('Answer was rejected as instruction-like content.');
+  }
+  return { answer, truncated };
+}
+
+function isScore(value) {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1;
+}
+
+function validateEvaluation(value, rubricKeys) {
+  const expectedKeys = ['score', 'strengths', 'gaps', 'resources', 'rubric_details'];
+  if (!value || typeof value !== 'object' || Array.isArray(value) ||
+      Object.keys(value).length !== expectedKeys.length || !expectedKeys.every((key) => Object.hasOwn(value, key))) {
+    throw new Error('LLM returned an invalid evaluation schema');
+  }
+  if (!isScore(value.score) || !['strengths', 'gaps', 'resources'].every((key) =>
+    Array.isArray(value[key]) && value[key].every((item) => typeof item === 'string'))) {
+    throw new Error('LLM returned invalid evaluation fields');
+  }
+  const details = value.rubric_details;
+  if (!details || typeof details !== 'object' || Array.isArray(details) ||
+      Object.keys(details).length !== rubricKeys.length || !rubricKeys.every((key) => isScore(details[key]))) {
+    throw new Error('LLM returned invalid rubric details');
+  }
+  return value;
 }
 
 // ============================================================
@@ -130,7 +172,10 @@ Schema:
  * @param {string} params.sessionType - 'topic' or 'job_role'
  * @returns {Promise<{ score: number, strengths: string[], gaps: string[], resources: string[], rubric_details: Object }>}
  */
-async function evaluate({ questionText, questionType, expectedPoints, answerText, sessionType }) {
+async function evaluate({ questionText, questionType, expectedPoints, answerText, sessionType }, {
+  client,
+  sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+} = {}) {
   let systemPrompt;
   if (sessionType === 'topic') {
     systemPrompt = ACADEMIC_SYSTEM_PROMPT;
@@ -138,13 +183,22 @@ async function evaluate({ questionText, questionType, expectedPoints, answerText
     systemPrompt = questionType === 'behavioral' ? BEHAVIORAL_SYSTEM_PROMPT : TECHNICAL_SYSTEM_PROMPT;
   }
   
-  const sanitisedAnswer = sanitiseInput(answerText);
-
-  let userMessageContent = `Question: ${questionText}\n`;
-  if (expectedPoints && expectedPoints.length > 0) {
-    userMessageContent += `Expected Answer Points:\n- ${expectedPoints.join('\n- ')}\n`;
-  }
-  userMessageContent += `\nCandidate's Answer:\n${DELIMITER_START}\n${sanitisedAnswer}\n${DELIMITER_END}`;
+  const { answer, truncated } = prepareAnswer(answerText);
+  const rubricKeys = sessionType === 'topic'
+    ? ['correctness', 'completeness', 'understanding', 'clarity']
+    : questionType === 'behavioral'
+      ? ['situation', 'task', 'action', 'result']
+      : ['correctness', 'completeness', 'clarity', 'examples'];
+  const userMessageContent = JSON.stringify({
+    question: questionText,
+    expected_answer_points: Array.isArray(expectedPoints) ? expectedPoints : [],
+    student_answer: {
+      delimiter_start: DELIMITER_START,
+      content: answer,
+      delimiter_end: DELIMITER_END,
+      truncated
+    }
+  });
 
   const messages = [
     { role: 'system', content: systemPrompt },
@@ -152,7 +206,7 @@ async function evaluate({ questionText, questionType, expectedPoints, answerText
   ];
 
   const callLLM = async () => {
-    const response = await openai.chat.completions.create({
+    const response = await (client || getOpenAI()).chat.completions.create({
       model: 'gpt-4o-mini',
       temperature: 0.1, // Low temp for consistent evaluation
       max_tokens: 1500,
@@ -165,13 +219,13 @@ async function evaluate({ questionText, questionType, expectedPoints, answerText
     }
     let content = choice.message.content;
     content = content.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
-    return JSON.parse(content);
+    return validateEvaluation(JSON.parse(content), rubricKeys);
   };
 
   try {
     return await callLLM();
   } catch (error) {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await sleep(2000);
     try {
       return await callLLM();
     } catch (retryError) {
@@ -180,4 +234,4 @@ async function evaluate({ questionText, questionType, expectedPoints, answerText
   }
 }
 
-module.exports = { evaluate };
+module.exports = { evaluate, sanitiseInput, prepareAnswer, validateEvaluation };

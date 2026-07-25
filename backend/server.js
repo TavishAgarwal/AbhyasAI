@@ -8,26 +8,18 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const { v4: uuidv4 } = require('uuid');
-const { cleanupExpiredFiles } = require('./services/cleanupService');
 const { sanitiseError } = require('./utils/errorSanitiser');
 const { apiKeyAuth } = require('./middleware/apiAuth');
 const { supabase } = require('./services/supabaseClient');
 
 // Import routes
-const generateRoutes = require('./routes/generate');
-const chaptersRoutes = require('./routes/chapters');
-const downloadRoutes = require('./routes/download');
 const webhookRoutes = require('./routes/webhook');
 const skillsRoutes = require('./routes/skills');
 const questionsRoutes = require('./routes/questions');
 const sessionsRoutes = require('./routes/sessions');
 const reportsRoutes = require('./routes/reports');
 const dashboardRoutes = require('./routes/dashboard');
-const studyMaterialRoutes = require('./routes/studyMaterial');
 const transcribeRoutes = require('./routes/transcribe');
-
-// Import cache service
-// cacheService removed — no longer needed after pivot from NCERT
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -73,7 +65,7 @@ app.use('/webhook', express.json({
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Rate limiter — 10 req/min/IP on /api/generate only
+// Rate limiter — 10 req/min/IP on credit-burning API routes
 const generateLimiter = rateLimit({
   windowMs: 60 * 1000,
   max: 10,
@@ -99,25 +91,12 @@ app.get('/health', async (req, res) => {
 });
 
 // API routes (apiKeyAuth on credit-burning endpoints)
-app.use('/api/generate', generateLimiter, apiKeyAuth, generateRoutes);
 app.use('/api/skills', generateLimiter, apiKeyAuth, skillsRoutes);
 app.use('/api/questions', generateLimiter, apiKeyAuth, questionsRoutes);
 app.use('/api/sessions', generateLimiter, apiKeyAuth, sessionsRoutes);
 app.use('/api/reports', generateLimiter, apiKeyAuth, reportsRoutes);
 app.use('/api/dashboard', generateLimiter, apiKeyAuth, dashboardRoutes);
-app.use('/api/study-material', generateLimiter, apiKeyAuth, studyMaterialRoutes);
 app.use('/api/transcribe', generateLimiter, apiKeyAuth, transcribeRoutes);
-
-// Read-only endpoints — rate-limited to prevent enumeration
-const readLimiter = rateLimit({
-  windowMs: 60 * 1000,
-  max: 60,
-  message: { error: 'Too many requests. Please slow down.' },
-  standardHeaders: true,
-  legacyHeaders: false
-});
-app.use('/api/chapters', readLimiter, chaptersRoutes);
-app.use('/api/download', readLimiter, apiKeyAuth, downloadRoutes);
 // Webhook rate limiter (Fix 11 — MEDIUM)
 const webhookLimiter = rateLimit({
   windowMs: 60 * 1000,
@@ -153,11 +132,6 @@ if (require.main === module) {
       console.warn(`[${new Date().toISOString()}] ⚠️  SECURITY WARNING: API_SECRET_KEY is not set. API endpoints are unauthenticated. Set it in .env for production.`);
     }
 
-    // Expired file cleanup — run every hour (Fix 9)
-    setInterval(cleanupExpiredFiles, 60 * 60 * 1000);
-    cleanupExpiredFiles().catch(err => {
-      console.error(`[${new Date().toISOString()}] Initial cleanup error:`, err.message);
-    });
   });
 }
 

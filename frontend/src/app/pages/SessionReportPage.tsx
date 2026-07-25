@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { getSession, generateReport, getReportHTML, getReportPdfUrl, getReportDocxUrl, generateStudyMaterial, downloadStudyMaterial, generateQuestions, startSession } from '../../lib/api';
+import { getSession, generateReport, getReportHTML, getReportPdfUrl, getReportDocxUrl, generateQuestions, startSession } from '../../lib/api';
 import { Download, RefreshCcw, Loader2, FileText, ChevronDown, ChevronUp, BookOpen, BarChart3, CheckCircle2, AlertCircle } from 'lucide-react';
 import { ErrorState } from '../components/states/ErrorState';
 import { LoadingState } from '../components/states/LoadingState';
@@ -18,13 +18,6 @@ export function SessionReportPage() {
   const [summaryLoading, setSummaryLoading] = useState(false);
   const [reportFormat, setReportFormat] = useState<'standard' | 'dyslexia' | 'adhd'>('standard');
   const [reportHTML, setReportHTML] = useState('');
-
-  // Phase 3: Study Material
-  const [showStudyMaterial, setShowStudyMaterial] = useState(false);
-  const [studyMaterialHTML, setStudyMaterialHTML] = useState('');
-  const [studyMaterialCache, setStudyMaterialCache] = useState<Record<string, string>>({});
-  const [generatingFormats, setGeneratingFormats] = useState<Set<string>>(new Set());
-  const [downloadingFormat, setDownloadingFormat] = useState<'pdf' | 'docx' | null>(null);
 
   // Phase 4: Retry Session
   const [retryLoading, setRetryLoading] = useState(false);
@@ -113,99 +106,6 @@ export function SessionReportPage() {
       } finally {
         setSummaryLoading(false);
       }
-    }
-  };
-
-  const generateFormatInBackground = async (format: string) => {
-    if (!sessionId || studyMaterialCache[format]) return;
-    
-    setGeneratingFormats(prev => new Set(prev).add(format));
-    try {
-      const html = await generateStudyMaterial(sessionId, format);
-      setStudyMaterialCache(prev => ({ ...prev, [format]: html }));
-    } catch (e) {
-      console.error(`Failed to generate ${format}`, e);
-    } finally {
-      setGeneratingFormats(prev => {
-        const next = new Set(prev);
-        next.delete(format);
-        return next;
-      });
-    }
-  };
-
-  const handleFormatChange = (format: 'standard' | 'dyslexia' | 'adhd') => {
-    setReportFormat(format);
-    if (studyMaterialCache[format]) {
-      setStudyMaterialHTML(studyMaterialCache[format]);
-    } else {
-      // Show empty while it generates in background (already triggered)
-      setStudyMaterialHTML('');
-      generateFormatInBackground(format).then(() => {
-        // After it finishes, if user is still on this format, show it
-        setStudyMaterialCache(prev => {
-          if (prev[format]) setStudyMaterialHTML(prev[format]);
-          return prev;
-        });
-      });
-    }
-  };
-
-  const handleGenerateStudyMaterial = async () => {
-    if (showStudyMaterial) {
-      setShowStudyMaterial(false);
-      return;
-    }
-
-    setShowStudyMaterial(true);
-    
-    if (studyMaterialCache[reportFormat]) {
-      setStudyMaterialHTML(studyMaterialCache[reportFormat]);
-      return;
-    }
-
-    if (sessionId) {
-      setGeneratingFormats(prev => new Set(prev).add(reportFormat));
-      try {
-        const html = await generateStudyMaterial(sessionId, reportFormat);
-        setStudyMaterialHTML(html);
-        setStudyMaterialCache(prev => ({ ...prev, [reportFormat]: html }));
-      } catch (err: any) {
-        console.error(err);
-      } finally {
-        setGeneratingFormats(prev => {
-          const next = new Set(prev);
-          next.delete(reportFormat);
-          return next;
-        });
-      }
-        
-      // Background generate the other formats
-      const allFormats: ('standard' | 'dyslexia' | 'adhd')[] = ['standard', 'dyslexia', 'adhd'];
-      allFormats.forEach(f => {
-        if (f !== reportFormat) {
-          generateFormatInBackground(f);
-        }
-      });
-    }
-  };
-
-  const handleDownloadStudyMaterial = async (type: 'pdf' | 'docx') => {
-    try {
-      setDownloadingFormat(type);
-      const blob = await downloadStudyMaterial(studyMaterialHTML, reportFormat, type, sessionData?.topicOrRoleId || 'Topic');
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Study-Material-${reportFormat}.${type}`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setDownloadingFormat(null);
     }
   };
 
@@ -347,13 +247,6 @@ export function SessionReportPage() {
           {showSummary ? 'Hide Full Summary' : 'Generate Full Summary'}
         </button>
         
-        <button 
-          onClick={handleGenerateStudyMaterial}
-          className="flex-1 py-4 px-6 bg-[#4f46e5] text-white rounded-xl font-bold hover:bg-[#4338ca] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#4f46e5]/20"
-        >
-          <BookOpen className="w-5 h-5" />
-          {showStudyMaterial ? 'Hide Study Material' : 'Generate Study Material'}
-        </button>
       </div>
 
       {/* Phase 2: Full Summary */}
@@ -418,94 +311,6 @@ export function SessionReportPage() {
                 className="prose prose-slate max-w-none w-full"
                 dangerouslySetInnerHTML={{ __html: reportHTML }} 
               />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Phase 3: Study Material */}
-      {showStudyMaterial && (
-        <div className="animate-fade-in border-t-2 border-slate-200/60 pt-12 mb-12 flex flex-col lg:flex-row gap-8">
-          <div className="w-full lg:w-72 flex-shrink-0 flex flex-col gap-6">
-            <div className="glass-panel p-6">
-              <h3 className="font-bold text-[#0b1c30] mb-4">Accessibility Formats</h3>
-              <div className="flex flex-col gap-3">
-                {[
-                  { id: 'standard', label: 'Standard', desc: 'Clean, professional format' },
-                  { id: 'dyslexia', label: 'Dyslexia-friendly', desc: 'Optimized typography & spacing' },
-                  { id: 'adhd', label: 'ADHD-friendly', desc: 'Progressive disclosure & colors' }
-                ].map(f => {
-                  const isCached = !!studyMaterialCache[f.id];
-                  const isGenerating = generatingFormats.has(f.id);
-                  return (
-                  <label 
-                    key={f.id} 
-                    className={`flex flex-col p-4 rounded-xl border cursor-pointer transition-all ${
-                      reportFormat === f.id 
-                        ? 'border-[#4f46e5] bg-[#4f46e5]/5 shadow-[0_0_15px_rgba(79,70,229,0.1)]' 
-                        : 'border-slate-200/50 hover:bg-slate-50/50 hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3 mb-1">
-                      <input 
-                        type="radio" 
-                        name="format" 
-                        checked={reportFormat === f.id}
-                        onChange={() => handleFormatChange(f.id as any)}
-                        className="hidden"
-                      />
-                      <span className={`font-bold ${reportFormat === f.id ? 'text-[#4f46e5]' : 'text-[#0b1c30]'}`}>
-                        {f.label}
-                      </span>
-                      {isCached && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
-                      {isGenerating && !isCached && <Loader2 className="w-3.5 h-3.5 text-[#4f46e5] animate-spin" />}
-                    </div>
-                    <span className="text-[12px] text-[#464555] pl-0">{f.desc}</span>
-                  </label>
-                  );
-                })}
-              </div>
-            </div>
-            
-            <div className="flex flex-col gap-2">
-              <button 
-                onClick={() => handleDownloadStudyMaterial('pdf')}
-                disabled={downloadingFormat !== null}
-                className="w-full px-4 py-3.5 bg-[#0b1c30] text-white text-center rounded-xl font-bold hover:bg-[#1a2b42] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
-              >
-                {downloadingFormat === 'pdf' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Download className="w-5 h-5" />} Download Guide PDF
-              </button>
-              <button 
-                onClick={() => handleDownloadStudyMaterial('docx')}
-                disabled={downloadingFormat !== null}
-                className="w-full px-4 py-3.5 bg-white text-[#0b1c30] border-2 border-[#0b1c30] text-center rounded-xl font-bold hover:bg-slate-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
-              >
-                {downloadingFormat === 'docx' ? <Loader2 className="w-5 h-5 animate-spin" /> : <FileText className="w-5 h-5" />} Download Guide DOCX
-              </button>
-            </div>
-          </div>
-
-          <div className="flex-1 glass-panel overflow-hidden flex flex-col">
-            <div className="bg-[#4f46e5]/5 px-6 py-4 border-b border-[#4f46e5]/10 flex items-center justify-between">
-              <span className="text-[10px] font-bold text-[#4f46e5] uppercase tracking-[0.15em] flex items-center gap-2">
-                <BookOpen className="w-4 h-4" /> Personalized Study Guide
-              </span>
-              {generatingFormats.size > 0 && <Loader2 className="w-4 h-4 text-[#4f46e5] animate-spin" />}
-            </div>
-            
-            <div className="p-8 lg:p-12 min-h-[400px] relative bg-white/60">
-              {!studyMaterialCache[reportFormat] ? (
-                <div className="absolute inset-0 flex items-center justify-center bg-white/50 backdrop-blur-sm z-10">
-                  <LoadingState message="Generating your personalized study guide..." />
-                </div>
-              ) : null}
-              
-              {studyMaterialHTML && (
-                <div 
-                  className="prose prose-slate prose-headings:text-[#0b1c30] prose-headings:font-extrabold prose-h2:text-2xl prose-h3:text-xl prose-a:text-[#4f46e5] max-w-none w-full"
-                  dangerouslySetInnerHTML={{ __html: studyMaterialHTML }} 
-                />
-              )}
             </div>
           </div>
         </div>

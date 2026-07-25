@@ -11,12 +11,12 @@ if (REDIS_ENABLED && redisClient) {
   });
 }
 
-async function enqueueWhatsAppMessage(messageData) {
-  if (!whatsappQueue) {
+async function enqueueWhatsAppMessage(messageData, queue = whatsappQueue) {
+  if (!queue) {
     console.warn('WhatsApp message received but Redis is not configured — message dropped.');
     return;
   }
-  await whatsappQueue.add('process-message', messageData, {
+  await queue.add('process-message', messageData, {
     attempts: 3,
     backoff: {
       type: 'exponential',

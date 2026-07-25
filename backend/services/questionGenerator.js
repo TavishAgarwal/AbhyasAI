@@ -5,11 +5,10 @@
 
 const OpenAI = require('openai');
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  timeout: 90 * 1000,
-  maxRetries: 0,
-});
+let openai;
+function getOpenAI() {
+  return openai ||= new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 90 * 1000, maxRetries: 0 });
+}
 
 // Elo constants
 const INITIAL_DIFFICULTY = 0.0; // β_i starting rating
@@ -141,7 +140,7 @@ ${previousQuestions.map((q, i) => `${i + 1}. "${q}"`).join('\n')}
     ];
 
   const callLLM = async () => {
-    const response = await openai.chat.completions.create({
+    const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o-mini',
       temperature: 0.7, // Higher for question variety
       max_tokens: 4000,

@@ -23,15 +23,19 @@ async function localApiCall(path, method, body) {
   return res.json();
 }
 
-async function updateSession(phone, updates) {
-  await supabase.from('whatsapp_sessions').upsert({
+async function updateSession(phone, updates, database = supabase) {
+  await database.from('whatsapp_sessions').upsert({
     phone_number: phone,
     ...updates,
     last_message_at: new Date().toISOString()
   });
 }
 
-async function processWhatsAppMessage(message) {
+async function processWhatsAppMessage(message, {
+  database = supabase,
+  send = sendText,
+  transcribe = downloadAndTranscribeAudio
+} = {}) {
   const from = message.from;
   const messageType = message.type;
   
@@ -40,48 +44,48 @@ async function processWhatsAppMessage(message) {
   if (messageType === 'audio') {
     const mediaId = message.audio?.id;
     if (mediaId) {
-      await sendText(from, 'Listening to your voice note... 🎧');
+      await send(from, 'Listening to your voice note... 🎧');
       try {
-        text = await downloadAndTranscribeAudio(mediaId);
+        text = await transcribe(mediaId);
       } catch (err) {
         console.error('Audio processing error:', err);
-        await sendText(from, "Sorry, I couldn't understand that audio. Can you type it out?");
+        await send(from, "Sorry, I couldn't understand that audio. Can you type it out?");
         return;
       }
     }
   } else if (messageType === 'text') {
     text = message.text?.body?.trim() || '';
   } else {
-    await sendText(from, 'Please send a text message or a voice note!');
+    await send(from, 'Please send a text message or a voice note!');
     return;
   }
   
   const lowerText = text.toLowerCase();
 
   // Load or create session
-  let { data: waSession } = await supabase
+  let { data: waSession } = await database
     .from('whatsapp_sessions')
     .select('*')
     .eq('phone_number', from)
     .single();
 
   if (!waSession) {
-    await updateSession(from, { conversation_state: 'greeting' });
+    await updateSession(from, { conversation_state: 'greeting' }, database);
     waSession = { conversation_state: 'greeting' };
   }
 
   // Handle reset
   if (['new', 'reset', 'hi', 'hello'].includes(lowerText)) {
-    await updateSession(from, { conversation_state: 'awaiting_topic', current_session_id: null });
-    await sendText(from, "Welcome to AbhyasAI Coaching! 🎯\nWhat topic or role would you like to practice today?");
+    await updateSession(from, { conversation_state: 'awaiting_topic', current_session_id: null }, database);
+    await send(from, "Welcome to AbhyasAI Coaching! 🎯\nWhat topic or role would you like to practice today?");
     return;
   }
 
   const state = waSession.conversation_state || 'greeting';
 
   if (state === 'greeting') {
-    await updateSession(from, { conversation_state: 'awaiting_topic' });
-    await sendText(from, "Welcome to AbhyasAI Coaching! 🎯\nWhat topic or role would you like to practice today?");
+    await updateSession(from, { conversation_state: 'awaiting_topic' }, database);
+    await send(from, "Welcome to AbhyasAI Coaching! 🎯\nWhat topic or role would you like to practice today?");
     return;
   }
 
