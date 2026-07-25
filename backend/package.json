@@ -10,7 +10,7 @@
     "test": "vitest run --globals"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
